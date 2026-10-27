@@ -17,15 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={montserrat.variable}>
-      <body>
-        {/* <h1>Skypro.Music</h1>
-        <nav>
-          <Link href="/">Home</Link>
-          <Link href="/favourites">Favourites</Link>
-          <Link href="/about">About</Link>
-        </nav> */}
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
