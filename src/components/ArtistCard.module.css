@@ -1,0 +1,14 @@
+.card {
+  border: 1px solid #ff0000;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem;
+  width: 200px;
+  text-align: center;
+}
+
+.artistName {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
