@@ -23,5 +23,5 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-montserrat);
 }

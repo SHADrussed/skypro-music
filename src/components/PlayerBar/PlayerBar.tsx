@@ -46,7 +46,7 @@ export default function PlayerBar() {
                 </div>
                 <div className={styles.trackPlay__author}>
                   <Link className={styles.trackPlay__authorLink} href="">
-                    Ты та...
+                    Ты такая
                   </Link>
                 </div>
                 <div className={styles.trackPlay__album}>
@@ -62,11 +62,11 @@ export default function PlayerBar() {
                     <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
                   </svg>
                 </div>
-                <div className={cn(styles.trackPlay__dislike, styles.btnIcon)}>
+                {/* <div className={cn(styles.trackPlay__dislike, styles.btnIcon)}>
                   <svg className={styles.trackPlay__dislikeSvg}>
                     <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
                   </svg>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

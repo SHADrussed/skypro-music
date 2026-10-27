@@ -254,6 +254,7 @@
 
 .trackPlay__dislike {
   margin-left: 28.5px;
+  display: grid;
 }
 
 .trackPlay__dislikeSvg {
