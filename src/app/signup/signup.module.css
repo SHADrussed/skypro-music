@@ -1,0 +1,137 @@
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+.containerEnter {
+    max-width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.modal__block {
+    z-index: 2;
+    opacity: 1;
+}
+
+.modal__form {
+    width: min(366px, calc(100vw - 48px));
+    background-color: #ffffff;
+    border-radius: 12px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 43px 44px 47px 40px;
+}
+
+.modal__btnSignupEnt:hover {
+    background-color: #3f007d;
+}
+
+.modal__btnSignupEnt:active {
+    background-color: #271a58;
+}
+
+.modal__logo {
+    width: 140px;
+    height: 21px;
+    margin-bottom: 34px;
+    background-color: transparent;
+    display: block;
+}
+
+.modal__logo img {
+    width: 140px;
+    height: auto;
+    display: block;
+}
+
+.modal__input {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #d0cece;
+    padding: 8px 1px;
+    margin-bottom: 30px;
+    background-color: transparent;
+}
+
+.modal__input::-webkit-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input:-ms-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input::-ms-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input::placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__btnSignupEnt {
+    width: min(278px, 100%);
+    height: 62px;
+    background-color: #580ea2;
+    border-radius: 6px;
+    border: none;
+    margin-top: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.05px;
+}
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
+    color: red;
+}
