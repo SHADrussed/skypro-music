@@ -12,14 +12,54 @@
 }
 
 .filter__button {
+  position: relative;
+
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   border: 1px solid #ffffff;
   border-radius: 60px;
   padding: 6px 20px;
+  margin-right: 10px;
 }
 
-.filter__button:not(:last-child) {
-  margin-right: 10px;
+.active {
+  border-color: #ad61ff;
+  color: #ad61ff;
+}
+
+.filter_container {
+  position: absolute;
+
+  margin-top: 20px;
+
+  background-color: rgba(49, 49, 49, 1);
+
+  padding: 34px;
+  border-radius: 12px;
+}
+
+.filter__list {
+  padding-right: 24px;
+  color: white;
+  display: flex;
+  gap: 28px;
+  height: max-content;
+  max-height: 237px;
+  overflow-y: auto;
+  flex-direction: column;
+  width: max-content;
+  max-width: 248px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(75, 73, 73, 1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+  }
 }
