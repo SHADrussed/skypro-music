@@ -1,0 +1,3 @@
+# Preserve the shipped Bridge bytes: its installer verifies SHA-256 hashes.
+tools/figma-qa/* text eol=lf
+.figma-qa/install.json text eol=lf

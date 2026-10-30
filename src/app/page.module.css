@@ -1,13 +1,14 @@
 .wrapper {
   width: 100%;
   min-height: 100%;
-  overflow: hidden;
+
   background-color: #383838;
 }
 
 .container {
   max-width: 1920px;
-  height: 100vh;
+  min-height: 100vh;
+  padding-bottom: 90px;
   margin: 0 auto;
   position: relative;
   background-color: #181818;
@@ -25,3 +26,6 @@
   justify-content: space-between;
   font-family: var(--font-montserrat);
 }
+
+@media (max-width: 1100px) { .main { flex-wrap: wrap; } }
+@media (max-width: 600px) { .container { padding-bottom: 170px; } }

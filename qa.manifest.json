@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "reference": {
+    "path": ".figma-qa/references/default/figma-reference.png",
+    "sha256": "044c5e18b379bed29d3602a20db9385618d78f7e8f0beb30e0dcc74e7ac73457",
+    "width": 1920,
+    "height": 1080,
+    "nodeId": "1:43"
+  },
+  "route": "/",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "baseURL": "http://127.0.0.1:4187",
+  "readySelector": "h2",
+  "timeoutMs": 30000,
+  "outputDir": ".figma-qa/results",
+  "server": {
+    "command": [
+      "node",
+      "node_modules/next/dist/bin/next",
+      "start",
+      "--hostname",
+      "127.0.0.1",
+      "--port",
+      "4187"
+    ],
+    "readyPath": "/"
+  }
+}
