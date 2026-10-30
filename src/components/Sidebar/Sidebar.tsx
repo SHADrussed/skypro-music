@@ -19,9 +19,10 @@ export default function Sidebar() {
             <Link className={styles.sidebar__link} href="#">
               <Image
                 src="/img/playlist01.png"
+                loading="eager"
                 alt="day's playlist"
                 width={250}
-                height={170}
+                height={150}
                 sizes="250px"
                 style={{ width: "100%", height: "auto" }}
               />
@@ -33,7 +34,7 @@ export default function Sidebar() {
                 src="/img/playlist02.png"
                 alt="day's playlist"
                 width={250}
-                height={170}
+                height={150}
                 sizes="250px"
                 style={{ width: "100%", height: "auto" }}
               />
@@ -45,7 +46,7 @@ export default function Sidebar() {
                 src="/img/playlist03.png"
                 alt="day's playlist"
                 width={250}
-                height={170}
+                height={150}
                 sizes="250px"
                 style={{ width: "100%", height: "auto" }}
               />

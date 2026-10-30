@@ -11,23 +11,27 @@ export default function NavMenu() {
     <nav className={styles.main__nav}>
       <div className={styles.nav__logo}>
         <Image
-          width={250}
-          height={170}
+          width={113}
+          height={17}
           className={styles.logo__image}
           src="/img/logo.png"
           alt={"logo"}
         />
       </div>
-      <div
-        onClick={() => setIsOpenMenu(!isOpenMenu)}
+      <button
+        type="button"
+        aria-label="Меню"
+        aria-expanded={isOpenMenu}
+        aria-controls="navigation-menu"
+        onClick={() => setIsOpenMenu((isOpen) => !isOpen)}
         className={styles.nav__burger}
       >
         <span className={styles.burger__line}></span>
         <span className={styles.burger__line}></span>
         <span className={styles.burger__line}></span>
-      </div>
+      </button>
       {isOpenMenu && (
-        <div className={styles.nav__menu}>
+        <div id="navigation-menu" className={styles.nav__menu}>
           <ul className={styles.menu__list}>
             <li className={styles.menu__item}>
               <Link href="/" className={styles.menu__link}>
