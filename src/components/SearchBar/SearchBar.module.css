@@ -1,7 +1,7 @@
 .centerblock__search {
   width: 100%;
   border-bottom: 1px solid #4e4e4e;
-  margin-bottom: 51px;
+  margin-bottom: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -71,4 +71,14 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+}
+
+@media (min-width: 1601px) {
+  .centerblock__search {
+    width: calc(100% + 185px);
+  }
+
+  .search__svg {
+    margin-left: 9px;
+  }
 }

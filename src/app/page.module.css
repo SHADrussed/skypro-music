@@ -24,7 +24,7 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  font-family: var(--font-montserrat);
+  font-family: var(--font-stratos);
 }
 
 @media (max-width: 1100px) { .main { flex-wrap: wrap; } }

@@ -130,3 +130,54 @@ test('filters switch directly, deduplicate data, scroll and leave tracks unchang
   await page.keyboard.press('Escape');
   await expect(page.getByRole('region', { name: /Варианты:/ })).toHaveCount(0);
 });
+
+
+test('Figma desktop font metrics and layout anchors', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'The reference frame is 1920 by 1080.');
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/');
+  await page.evaluate(() => document.fonts.ready);
+  const typography = await page.getByRole('heading', { name: 'Треки', exact: true }).evaluate(heading => {
+    const style = getComputedStyle(heading);
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    context.font = `400 16px ${style.fontFamily}`;
+    const range = document.createRange();
+    range.selectNodeContents(heading);
+    return {
+      family: style.fontFamily,
+      loaded: document.fonts.check(`400 16px ${style.fontFamily.split(",")[0]}`),
+      faces: [...document.fonts].map(face => ({ family: face.family, status: face.status })),
+      // The reference's Guilt text layer is 33px wide at 16px.
+      sampleWidth: context.measureText('Guilt').width,
+      headingTextWidth: range.getBoundingClientRect().width,
+    };
+  });
+  await testInfo.attach('font-diagnostics', { body: JSON.stringify(typography, null, 2), contentType: 'application/json' });
+  expect(typography.family).toContain('stratos');
+  expect(typography.loaded).toBe(true);
+  expect(Math.abs(typography.sampleWidth - 33)).toBeLessThan(1);
+  expect(Math.abs(typography.headingTextWidth - 172)).toBeLessThan(2);
+  const anchors = [
+    [page.getByRole('heading', { name: 'Треки', exact: true }), { x: 294, y: 122, height: 72 }],
+    [page.getByRole('button', { name: 'исполнителю', exact: true }), { x: 386, y: 239 }],
+    [page.locator('[class*="centerblock__search"]'), { x: 294, y: 20, width: 1293 }],
+    [page.locator('[class*="track__titleImage"]').first(), { x: 294, y: 388, width: 51, height: 51 }],
+    [page.locator('[class*="track__author"]').first(), { x: 775 }],
+    [page.locator('[class*="track__album"]').first(), { x: 1096 }],
+    [page.getByRole('img', { name: "day's playlist" }).first(), { x: 1580, y: 428, width: 250, height: 150 }],
+  ];
+  const measurements = [];
+  for (const [locator, expected] of anchors) {
+    const actual = await locator.boundingBox();
+    measurements.push({ expected, actual });
+    for (const [property, value] of Object.entries(expected)) {
+      expect(Math.abs(actual[property] - value), `${property} should match the reference`).toBeLessThan(1);
+    }
+  }
+  await testInfo.attach('figma-anchor-measurements', {
+    body: JSON.stringify({ typography, measurements }, null, 2), contentType: 'application/json',
+  });
+  await page.getByRole('button', { name: 'Меню', exact: true }).click();
+  await page.screenshot({ path: testInfo.outputPath('figma-desktop-menu.png') });
+});

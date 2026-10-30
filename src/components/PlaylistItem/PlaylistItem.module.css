@@ -143,3 +143,20 @@
   .track__author, .track__album { grid-column: 1; padding-left: 68px; }
   .track__timeSvg { margin-right: 6px; }
 }
+
+@media (min-width: 1601px) {
+  .playlist__track {
+    grid-template-columns: minmax(0, 481fr) minmax(0, 321fr) minmax(0, 245fr) 61px;
+    gap: 0;
+  }
+}
+
+.track__timeSvg {
+  flex-shrink: 0;
+}
+
+@media (min-width: 1601px) {
+  .track__timeSvg {
+    margin-right: 9px;
+  }
+}
