@@ -1,5 +1,6 @@
 .main__nav {
   width: 244px;
+  flex-shrink: 0;
   background-color: #181818;
   padding: 20px 0 20px 36px;
 }
@@ -13,6 +14,9 @@
 }
 
 .nav__burger {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
   width: 20px;
   height: 36px;
   padding: 13px 0;
@@ -60,4 +64,14 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+}
+
+.nav__burger:focus-visible { outline: 2px solid #ad61ff; outline-offset: 4px; }
+@media (max-width: 1600px) {
+  .main__nav { width: 190px; padding-left: 24px; }
+}
+@media (max-width: 1100px) {
+  .main__nav { width: 100%; padding: 16px 24px; display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; }
+  .nav__logo { margin-bottom: 0; }
+  .nav__menu { width: 100%; }
 }
