@@ -59,11 +59,32 @@
 }
 
 .track__titleLink {
+  background: transparent;
+  border: 0;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
+}
+
+.track__indicator {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #b672ff;
+  flex-shrink: 0;
+}
+
+.track__indicatorPlaying {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(0.65); opacity: 0.5; }
 }
 
 .track__titleSpan {
