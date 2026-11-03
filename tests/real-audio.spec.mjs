@@ -33,3 +33,51 @@ test('real MP3 URLs decode and actually play without intercepted responses', asy
   await testInfo.attach('real-source-playback', { body: JSON.stringify({ results, errors }, null, 2), contentType: 'application/json' });
   expect(errors).toEqual([]);
 });
+
+test('advanced controls operate on the actual remote MP3 audio', async ({ page }, testInfo) => {
+  test.skip(!process.env.QA_REAL_AUDIO, 'Enable QA_REAL_AUDIO for external-source checks.');
+  test.setTimeout(180000);
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+  page.on('requestfailed', request => { if (request.failure()?.errorText !== 'net::ERR_ABORTED') errors.push(`${request.url()}: ${request.failure()?.errorText}`); });
+  page.on('response', response => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
+  await page.goto('/');
+  const media = page.locator('audio');
+  const seek = page.getByRole('slider', { name: 'Позиция воспроизведения' });
+  await page.locator('[class*="playlist__item"]').first().getByRole('button').click();
+  await expect.poll(() => media.evaluate(el => el.currentTime), { timeout: 20000 }).toBeGreaterThan(0.15);
+  const duration = await media.evaluate(el => el.duration);
+  expect(duration).toBeGreaterThan(100);
+  await page.getByRole('button', { name: 'Пауза', exact: true }).click();
+  for (const value of [0, duration / 2]) {
+    await seek.fill(String(Math.round(value * 100) / 100));
+    await expect.poll(() => media.evaluate(el => el.currentTime), { timeout: 15000 }).toBeCloseTo(value, 1);
+    expect(await media.evaluate(el => el.paused)).toBe(true);
+  }
+  for (const value of [0, 0.5, 1]) {
+    await page.getByRole('slider', { name: 'Громкость' }).fill(String(value));
+    await expect.poll(() => media.evaluate(el => el.volume)).toBe(value);
+  }
+  await page.getByRole('button', { name: 'Случайный порядок', exact: true }).click();
+  await page.getByRole('button', { name: 'Повтор трека', exact: true }).click();
+  await seek.fill(String(Math.round((duration - 0.5) * 100) / 100));
+  await expect.poll(() => media.evaluate(el => el.readyState), { timeout: 15000 }).toBeGreaterThanOrEqual(3);
+  await page.getByRole('button', { name: 'Воспроизвести', exact: true }).click();
+  await expect.poll(() => media.evaluate(el => el.currentTime), { timeout: 20000 }).toBeLessThan(2);
+  await expect(media).toHaveAttribute('src', sourceURLs[0]);
+  expect(await media.evaluate(el => el.loop)).toBe(true);
+  await page.getByRole('button', { name: 'Повтор трека', exact: true }).click();
+  await page.getByRole('button', { name: 'Случайный порядок', exact: true }).click();
+  await seek.fill(String(Math.round((duration - 0.3) * 100) / 100));
+  await expect(media).toHaveAttribute('src', sourceURLs[1], { timeout: 20000 });
+  await expect.poll(() => media.evaluate(el => el.currentTime), { timeout: 20000 }).toBeGreaterThan(0.15);
+  await page.getByRole('button', { name: 'Следующий трек', exact: true }).click();
+  await expect(media).toHaveAttribute('src', sourceURLs[2]);
+  await expect.poll(() => media.evaluate(el => el.currentTime), { timeout: 20000 }).toBeGreaterThan(0.15);
+  await page.getByRole('button', { name: 'Предыдущий трек', exact: true }).click();
+  await expect(media).toHaveAttribute('src', sourceURLs[1]);
+  await expect.poll(() => media.evaluate(el => el.currentTime), { timeout: 20000 }).toBeGreaterThan(0.15);
+  await testInfo.attach('real-advanced-playback', { body: JSON.stringify({ duration, source: await media.evaluate(el => el.currentSrc), errors }, null, 2), contentType: 'application/json' });
+  expect(errors).toEqual([]);
+});
