@@ -127,3 +127,53 @@ test('rapid selection cancels the previous pending play request', async ({ page 
   expect(errors).toEqual([]);
 });
 
+test('retry the same source after a temporary load failure', async ({ page }) => {
+  let attempts = 0;
+  await page.route('**/Alexander_Nakarada_-_Chase.mp3', route => {
+    attempts++;
+    return route.fulfill(attempts === 1
+      ? { status: 404, body: 'temporarily missing' }
+      : { contentType: 'audio/wav', body: wav });
+  });
+  await page.goto('/'); await choose(page, 0);
+  await expect(page.locator('p[role=alert]')).toBeVisible();
+  await page.getByRole('button', { name: 'Воспроизвести', exact: true }).click();
+  await expectPlaying(page);
+  expect(attempts).toBeGreaterThan(1);
+  await expect(page.locator('p[role=alert]')).toHaveCount(0);
+});
+
+test('pending playback can be paused before the source finishes loading', async ({ page }) => {
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  await page.route('**/Alexander_Nakarada_-_Chase.mp3', async route => {
+    await gate;
+    await route.fulfill({ contentType: 'audio/wav', body: wav });
+  });
+  await page.goto('/'); await choose(page, 0);
+  try {
+    await expect.poll(() => media(page).evaluate(audio => audio.paused)).toBe(false);
+    await expect(indicator(page)).toHaveAttribute('data-playing', 'false');
+    await page.getByRole('button', { name: 'Пауза', exact: true }).click({ timeout: 3000 });
+    expect(await media(page).evaluate(audio => audio.paused)).toBe(true);
+    release();
+    await expect.poll(() => media(page).evaluate(audio => audio.readyState)).toBeGreaterThanOrEqual(3);
+    expect(await media(page).evaluate(audio => audio.paused)).toBe(true);
+    await expect(indicator(page)).toHaveAttribute('data-playing', 'false');
+    await page.getByRole('button', { name: 'Воспроизвести', exact: true }).click();
+    await expectPlaying(page);
+  } finally { release(); }
+});
+
+test('navigation disposes the previous audio element before returning to the player', async ({ page }) => {
+  await page.goto('/'); await choose(page, 0); await expectPlaying(page);
+  await media(page).evaluate(audio => { window.retiredAudio = audio; });
+  await page.getByRole('button', { name: 'Меню', exact: true }).click();
+  await page.getByRole('link', { name: 'Мои треки', exact: true }).click();
+  await expect(page).toHaveURL(/\/favourites$/);
+  await expect.poll(() => page.evaluate(() => window.retiredAudio.paused && !window.retiredAudio.hasAttribute('src'))).toBe(true);
+  await page.goto('/');
+  await choose(page, 1); await expectPlaying(page);
+  await expect(media(page)).toHaveCount(1);
+});
+

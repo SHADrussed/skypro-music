@@ -1,9 +1,9 @@
 {
   "command": "QA_REAL_AUDIO=1 npm run qa",
   "stats": {
-    "startTime": "2026-11-03T10:46:10.389Z",
-    "duration": 149537.823,
-    "expected": 37,
+    "startTime": "2026-11-03T11:01:31.579Z",
+    "duration": 190264.206,
+    "expected": 46,
     "skipped": 2,
     "unexpected": 0,
     "flaky": 0
@@ -19,7 +19,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 2703,
+          "duration": 2344,
           "errors": [],
           "attachments": [
             {
@@ -39,7 +39,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 13470,
+          "duration": 13436,
           "errors": [],
           "attachments": []
         }
@@ -54,7 +54,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 965,
+          "duration": 1033,
           "errors": [],
           "attachments": []
         }
@@ -64,151 +64,6 @@
       "file": "audio-player.spec.mjs",
       "title": "rejected play promise is handled without claiming playback",
       "project": "mobile",
-      "status": "expected",
-      "expectedStatus": "passed",
-      "results": [
-        {
-          "status": "passed",
-          "duration": 801,
-          "errors": [],
-          "attachments": []
-        }
-      ]
-    },
-    {
-      "file": "audio-player.spec.mjs",
-      "title": "rapid selection cancels the previous pending play request",
-      "project": "mobile",
-      "status": "expected",
-      "expectedStatus": "passed",
-      "results": [
-        {
-          "status": "passed",
-          "duration": 955,
-          "errors": [],
-          "attachments": []
-        }
-      ]
-    },
-    {
-      "file": "audio-player.spec.mjs",
-      "title": "selection, actual playback, pause/resume, switch and a single audio element",
-      "project": "tablet",
-      "status": "expected",
-      "expectedStatus": "passed",
-      "results": [
-        {
-          "status": "passed",
-          "duration": 2471,
-          "errors": [],
-          "attachments": [
-            {
-              "name": "browser-diagnostics",
-              "data": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "file": "audio-player.spec.mjs",
-      "title": "natural ended event stops the indicator; selecting the same track restarts",
-      "project": "tablet",
-      "status": "expected",
-      "expectedStatus": "passed",
-      "results": [
-        {
-          "status": "passed",
-          "duration": 13448,
-          "errors": [],
-          "attachments": []
-        }
-      ]
-    },
-    {
-      "file": "audio-player.spec.mjs",
-      "title": "unavailable source stays stopped and recovers on another track",
-      "project": "tablet",
-      "status": "expected",
-      "expectedStatus": "passed",
-      "results": [
-        {
-          "status": "passed",
-          "duration": 905,
-          "errors": [],
-          "attachments": []
-        }
-      ]
-    },
-    {
-      "file": "audio-player.spec.mjs",
-      "title": "rejected play promise is handled without claiming playback",
-      "project": "tablet",
-      "status": "expected",
-      "expectedStatus": "passed",
-      "results": [
-        {
-          "status": "passed",
-          "duration": 862,
-          "errors": [],
-          "attachments": []
-        }
-      ]
-    },
-    {
-      "file": "audio-player.spec.mjs",
-      "title": "rapid selection cancels the previous pending play request",
-      "project": "tablet",
-      "status": "expected",
-      "expectedStatus": "passed",
-      "results": [
-        {
-          "status": "passed",
-          "duration": 857,
-          "errors": [],
-          "attachments": []
-        }
-      ]
-    },
-    {
-      "file": "audio-player.spec.mjs",
-      "title": "selection, actual playback, pause/resume, switch and a single audio element",
-      "project": "desktop",
-      "status": "expected",
-      "expectedStatus": "passed",
-      "results": [
-        {
-          "status": "passed",
-          "duration": 2342,
-          "errors": [],
-          "attachments": [
-            {
-              "name": "browser-diagnostics",
-              "data": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "file": "audio-player.spec.mjs",
-      "title": "natural ended event stops the indicator; selecting the same track restarts",
-      "project": "desktop",
-      "status": "expected",
-      "expectedStatus": "passed",
-      "results": [
-        {
-          "status": "passed",
-          "duration": 13482,
-          "errors": [],
-          "attachments": []
-        }
-      ]
-    },
-    {
-      "file": "audio-player.spec.mjs",
-      "title": "unavailable source stays stopped and recovers on another track",
-      "project": "desktop",
       "status": "expected",
       "expectedStatus": "passed",
       "results": [
@@ -222,6 +77,241 @@
     },
     {
       "file": "audio-player.spec.mjs",
+      "title": "rapid selection cancels the previous pending play request",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1057,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "retry the same source after a temporary load failure",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 981,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "pending playback can be paused before the source finishes loading",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1021,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "navigation disposes the previous audio element before returning to the player",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1781,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "selection, actual playback, pause/resume, switch and a single audio element",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2356,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "natural ended event stops the indicator; selecting the same track restarts",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 13513,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "unavailable source stays stopped and recovers on another track",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 872,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "rejected play promise is handled without claiming playback",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 805,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "rapid selection cancels the previous pending play request",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 888,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "retry the same source after a temporary load failure",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 856,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "pending playback can be paused before the source finishes loading",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1025,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "navigation disposes the previous audio element before returning to the player",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1616,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "selection, actual playback, pause/resume, switch and a single audio element",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2374,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "natural ended event stops the indicator; selecting the same track restarts",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 13386,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "unavailable source stays stopped and recovers on another track",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 882,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
       "title": "rejected play promise is handled without claiming playback",
       "project": "desktop",
       "status": "expected",
@@ -229,7 +319,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 871,
+          "duration": 885,
           "errors": [],
           "attachments": []
         }
@@ -244,7 +334,52 @@
       "results": [
         {
           "status": "passed",
-          "duration": 910,
+          "duration": 888,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "retry the same source after a temporary load failure",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 875,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "pending playback can be paused before the source finishes loading",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 992,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "navigation disposes the previous audio element before returning to the player",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1577,
           "errors": [],
           "attachments": []
         }
@@ -259,7 +394,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 401,
+          "duration": 487,
           "errors": [],
           "attachments": [
             {
@@ -281,7 +416,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 323,
+          "duration": 416,
           "errors": [],
           "attachments": [
             {
@@ -303,7 +438,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 340,
+          "duration": 433,
           "errors": [],
           "attachments": [
             {
@@ -325,7 +460,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 337,
+          "duration": 338,
           "errors": [],
           "attachments": [
             {
@@ -347,7 +482,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 719,
+          "duration": 630,
           "errors": [],
           "attachments": [
             {
@@ -369,7 +504,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 1822,
+          "duration": 1787,
           "errors": [],
           "attachments": [
             {
@@ -391,7 +526,7 @@
       "results": [
         {
           "status": "skipped",
-          "duration": 100,
+          "duration": 101,
           "errors": [],
           "attachments": [
             {
@@ -413,7 +548,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 438,
+          "duration": 453,
           "errors": [],
           "attachments": [
             {
@@ -435,7 +570,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 316,
+          "duration": 328,
           "errors": [],
           "attachments": [
             {
@@ -457,7 +592,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 370,
+          "duration": 333,
           "errors": [],
           "attachments": [
             {
@@ -479,7 +614,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 321,
+          "duration": 358,
           "errors": [],
           "attachments": [
             {
@@ -501,7 +636,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 567,
+          "duration": 580,
           "errors": [],
           "attachments": [
             {
@@ -523,7 +658,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 1811,
+          "duration": 1877,
           "errors": [],
           "attachments": [
             {
@@ -545,7 +680,7 @@
       "results": [
         {
           "status": "skipped",
-          "duration": 98,
+          "duration": 97,
           "errors": [],
           "attachments": [
             {
@@ -567,7 +702,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 460,
+          "duration": 493,
           "errors": [],
           "attachments": [
             {
@@ -589,7 +724,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 341,
+          "duration": 353,
           "errors": [],
           "attachments": [
             {
@@ -611,7 +746,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 391,
+          "duration": 359,
           "errors": [],
           "attachments": [
             {
@@ -633,7 +768,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 356,
+          "duration": 360,
           "errors": [],
           "attachments": [
             {
@@ -655,7 +790,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 537,
+          "duration": 631,
           "errors": [],
           "attachments": [
             {
@@ -677,7 +812,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 1813,
+          "duration": 1815,
           "errors": [],
           "attachments": [
             {
@@ -699,7 +834,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 509,
+          "duration": 523,
           "errors": [],
           "attachments": [
             {
@@ -851,7 +986,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 25197,
+          "duration": 31778,
           "errors": [],
           "attachments": [
             {
@@ -860,7 +995,7 @@
                 "results": [
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Alexander_Nakarada_-_Chase.mp3",
-                    "currentTime": 0.266312,
+                    "currentTime": 0.599409,
                     "duration": 128.6991,
                     "paused": false,
                     "readyState": 4,
@@ -868,7 +1003,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Frank_Schroter_-_Open_Sea_epic.mp3",
-                    "currentTime": 0.390159,
+                    "currentTime": 0.448934,
                     "duration": 141.176463,
                     "paused": false,
                     "readyState": 4,
@@ -876,7 +1011,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Kevin_Macleod_-_Sneaky_Snitch.mp3",
-                    "currentTime": 0.255721,
+                    "currentTime": 0.453202,
                     "duration": 136.620425,
                     "paused": false,
                     "readyState": 4,
@@ -884,7 +1019,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Mixkit_-_Secret_Garden.mp3",
-                    "currentTime": 0.194094,
+                    "currentTime": 0.530409,
                     "duration": 153.000249,
                     "paused": false,
                     "readyState": 4,
@@ -892,7 +1027,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_A_Journey_For_Successful_Winners.mp3",
-                    "currentTime": 0.379412,
+                    "currentTime": 1.187431,
                     "duration": 162.532971,
                     "paused": false,
                     "readyState": 4,
@@ -900,7 +1035,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_Epic_Heroic_Conquest.mp3",
-                    "currentTime": 0.289932,
+                    "currentTime": 1.25192,
                     "duration": 170.059271,
                     "paused": false,
                     "readyState": 4,
@@ -908,7 +1043,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/musiclfiles_-_The_March_Of_The_Final_Battle.mp3",
-                    "currentTime": 0.426508,
+                    "currentTime": 0.985881,
                     "duration": 135.410748,
                     "paused": false,
                     "readyState": 4,
@@ -916,7 +1051,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_True_Summer.mp3",
-                    "currentTime": 0.387509,
+                    "currentTime": 0.763816,
                     "duration": 120.023537,
                     "paused": false,
                     "readyState": 4,
@@ -924,7 +1059,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Waltz_Piano_-_Background_Sensible.mp3",
-                    "currentTime": 0.452909,
+                    "currentTime": 1.035345,
                     "duration": 136.761247,
                     "paused": false,
                     "readyState": 4,
@@ -932,7 +1067,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Winniethemoog_-_Action_Sport_Breakbeat.mp3",
-                    "currentTime": 0.198089,
+                    "currentTime": 1.223077,
                     "duration": 109.473673,
                     "paused": false,
                     "readyState": 4,
@@ -955,7 +1090,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 21797,
+          "duration": 38674,
           "errors": [],
           "attachments": [
             {
@@ -964,7 +1099,7 @@
                 "results": [
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Alexander_Nakarada_-_Chase.mp3",
-                    "currentTime": 0.251865,
+                    "currentTime": 1.203474,
                     "duration": 128.6991,
                     "paused": false,
                     "readyState": 4,
@@ -972,7 +1107,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Frank_Schroter_-_Open_Sea_epic.mp3",
-                    "currentTime": 0.25775,
+                    "currentTime": 0.446076,
                     "duration": 141.176463,
                     "paused": false,
                     "readyState": 4,
@@ -980,7 +1115,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Kevin_Macleod_-_Sneaky_Snitch.mp3",
-                    "currentTime": 0.191926,
+                    "currentTime": 0.463233,
                     "duration": 136.620425,
                     "paused": false,
                     "readyState": 4,
@@ -988,7 +1123,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Mixkit_-_Secret_Garden.mp3",
-                    "currentTime": 0.476828,
+                    "currentTime": 0.733297,
                     "duration": 153.000249,
                     "paused": false,
                     "readyState": 4,
@@ -996,7 +1131,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_A_Journey_For_Successful_Winners.mp3",
-                    "currentTime": 0.232382,
+                    "currentTime": 1.183873,
                     "duration": 162.532971,
                     "paused": false,
                     "readyState": 4,
@@ -1004,7 +1139,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_Epic_Heroic_Conquest.mp3",
-                    "currentTime": 0.478994,
+                    "currentTime": 1.049766,
                     "duration": 170.059271,
                     "paused": false,
                     "readyState": 4,
@@ -1012,7 +1147,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/musiclfiles_-_The_March_Of_The_Final_Battle.mp3",
-                    "currentTime": 0.326962,
+                    "currentTime": 0.561108,
                     "duration": 135.410748,
                     "paused": false,
                     "readyState": 4,
@@ -1020,7 +1155,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_True_Summer.mp3",
-                    "currentTime": 0.184432,
+                    "currentTime": 0.95076,
                     "duration": 120.023537,
                     "paused": false,
                     "readyState": 4,
@@ -1028,7 +1163,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Waltz_Piano_-_Background_Sensible.mp3",
-                    "currentTime": 0.443107,
+                    "currentTime": 0.797732,
                     "duration": 136.761247,
                     "paused": false,
                     "readyState": 4,
@@ -1036,7 +1171,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Winniethemoog_-_Action_Sport_Breakbeat.mp3",
-                    "currentTime": 0.389348,
+                    "currentTime": 1.02112,
                     "duration": 109.473673,
                     "paused": false,
                     "readyState": 4,
@@ -1059,7 +1194,7 @@
       "results": [
         {
           "status": "passed",
-          "duration": 28193,
+          "duration": 34201,
           "errors": [],
           "attachments": [
             {
@@ -1068,7 +1203,7 @@
                 "results": [
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Alexander_Nakarada_-_Chase.mp3",
-                    "currentTime": 0.274235,
+                    "currentTime": 0.918405,
                     "duration": 128.6991,
                     "paused": false,
                     "readyState": 4,
@@ -1076,7 +1211,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Frank_Schroter_-_Open_Sea_epic.mp3",
-                    "currentTime": 0.367072,
+                    "currentTime": 0.197692,
                     "duration": 141.176463,
                     "paused": false,
                     "readyState": 4,
@@ -1084,7 +1219,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Kevin_Macleod_-_Sneaky_Snitch.mp3",
-                    "currentTime": 0.497853,
+                    "currentTime": 0.443268,
                     "duration": 136.620425,
                     "paused": false,
                     "readyState": 4,
@@ -1092,7 +1227,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Mixkit_-_Secret_Garden.mp3",
-                    "currentTime": 0.453481,
+                    "currentTime": 1.047117,
                     "duration": 153.000249,
                     "paused": false,
                     "readyState": 4,
@@ -1100,7 +1235,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_A_Journey_For_Successful_Winners.mp3",
-                    "currentTime": 0.400775,
+                    "currentTime": 0.565712,
                     "duration": 162.532971,
                     "paused": false,
                     "readyState": 4,
@@ -1108,7 +1243,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_Epic_Heroic_Conquest.mp3",
-                    "currentTime": 0.400417,
+                    "currentTime": 0.97344,
                     "duration": 170.059271,
                     "paused": false,
                     "readyState": 4,
@@ -1116,7 +1251,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/musiclfiles_-_The_March_Of_The_Final_Battle.mp3",
-                    "currentTime": 0.247492,
+                    "currentTime": 0.894703,
                     "duration": 135.410748,
                     "paused": false,
                     "readyState": 4,
@@ -1124,7 +1259,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_True_Summer.mp3",
-                    "currentTime": 0.169599,
+                    "currentTime": 0.436636,
                     "duration": 120.023537,
                     "paused": false,
                     "readyState": 4,
@@ -1132,7 +1267,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Waltz_Piano_-_Background_Sensible.mp3",
-                    "currentTime": 0.254377,
+                    "currentTime": 1.003779,
                     "duration": 136.761247,
                     "paused": false,
                     "readyState": 4,
@@ -1140,7 +1275,7 @@
                   },
                   {
                     "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Winniethemoog_-_Action_Sport_Breakbeat.mp3",
-                    "currentTime": 0.486557,
+                    "currentTime": 0.460586,
                     "duration": 109.473673,
                     "paused": false,
                     "readyState": 4,

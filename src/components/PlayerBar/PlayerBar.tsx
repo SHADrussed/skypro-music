@@ -12,6 +12,8 @@ export default function PlayerBar() {
   const requestRef = useRef(0);
   const dispatch = useAppDispatch();
   const { currentTrack, isPlaying } = useAppSelector(state => state.player);
+  // Pending playback can be paused even before media is ready (isPlaying=false).
+  const [playbackRequested, setPlaybackRequested] = useState(false);
   const [error, setError] = useState<{ source: string; message: string } | null>(null);
 
   const invalidatePlayback = useCallback(() => { ++requestRef.current; }, []);
@@ -20,9 +22,13 @@ export default function PlayerBar() {
     const request = ++requestRef.current;
     const source = audio.src;
     setError(null);
+    // play() alone keeps rejecting after a media error until load() resets it.
+    if (audio.error) audio.load();
+    setPlaybackRequested(true);
     void audio.play().catch((reason: unknown) => {
       // A superseded play() may reject after a new source has already started.
       if (request !== requestRef.current) return;
+      setPlaybackRequested(false);
       dispatch(setIsPlaying(false));
       if (reason instanceof DOMException && reason.name === "AbortError") return;
       setError({ source, message: "Не удалось воспроизвести трек. Попробуйте ещё раз." });
@@ -46,7 +52,7 @@ export default function PlayerBar() {
   function togglePlayback() {
     const audio = audioRef.current;
     if (!audio || !currentTrack) return;
-    if (audio.paused) startPlayback(audio);
+    if (audio.paused || audio.error) startPlayback(audio);
     else {
       ++requestRef.current;
       audio.pause();
@@ -55,19 +61,24 @@ export default function PlayerBar() {
 
   function syncPlayback() {
     const audio = audioRef.current;
+    setPlaybackRequested(Boolean(audio && !audio.paused && !audio.ended && !audio.error));
     dispatch(setIsPlaying(Boolean(audio && !audio.paused && !audio.ended && audio.readyState >= 3)));
   }
+
+  const canPause = isPlaying || playbackRequested;
 
   return (
     <div className={styles.bar}>
       <audio ref={audioRef} preload="none"
         onPlay={syncPlayback} onPlaying={syncPlayback} onPause={syncPlayback}
         onWaiting={() => dispatch(setIsPlaying(false))}
-        onEnded={() => dispatch(setIsPlaying(false))}
+        onEnded={syncPlayback}
         onError={() => {
           const audio = audioRef.current;
           if (!audio?.error) return;
           ++requestRef.current;
+          audio.pause();
+          setPlaybackRequested(false);
           dispatch(setIsPlaying(false));
           setError({ source: audio.src, message: "Не удалось загрузить аудио. Источник недоступен." });
         }}
@@ -84,9 +95,9 @@ export default function PlayerBar() {
                 </svg>
               </div>
               <button type="button" className={cn(styles.player__btnPlay, styles.btn)}
-                aria-label={isPlaying ? "Пауза" : "Воспроизвести"}
+                aria-label={canPause ? "Пауза" : "Воспроизвести"}
                 disabled={!currentTrack} onClick={togglePlayback}>
-                {isPlaying ? <svg className={styles.player__btnPlaySvg} viewBox="0 0 22 20" aria-hidden="true">
+                {canPause ? <svg className={styles.player__btnPlaySvg} viewBox="0 0 22 20" aria-hidden="true">
                   <path d="M3 0h5v20H3zM14 0h5v20h-5z" />
                 </svg> : <svg className={styles.player__btnPlaySvg}>
                   <use xlinkHref="/img/icon/sprite.svg#icon-play"></use>
