@@ -1,0 +1,43 @@
+{
+  "startedAt": "2026-11-03T10:45:53.489Z",
+  "status": "PASS",
+  "errors": [],
+  "jsErrors": [],
+  "consoleErrors": [],
+  "failedRequests": [],
+  "httpErrors": [],
+  "visualVerdict": "Manual review required; no pixel diff",
+  "reference": {
+    "path": ".figma-qa/references/default/figma-reference.png",
+    "sha256": "044c5e18b379bed29d3602a20db9385618d78f7e8f0beb30e0dcc74e7ac73457",
+    "width": 1920,
+    "height": 1080,
+    "nodeId": "1:43"
+  },
+  "route": "http://127.0.0.1:4187/",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "deviceScaleFactor": 1,
+  "serverMode": "existing",
+  "playwrightPackage": "playwright",
+  "browser": "156.0.8078.4",
+  "failedImages": [],
+  "failedFonts": [],
+  "overflow": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "viewport": 1920
+  },
+  "actual": {
+    "width": 1920,
+    "height": 1080,
+    "bitDepth": 8,
+    "colorType": 2,
+    "interlaced": false
+  },
+  "screenshot": true,
+  "referenceUnchanged": true,
+  "finishedAt": "2026-11-03T10:45:54.578Z"
+}

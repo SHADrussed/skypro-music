@@ -99,7 +99,17 @@
 }
 
 .player__btnPlay {
+  background: transparent;
+  border: 0;
   margin-right: 23px;
+}
+
+.player__btnPlay:disabled { opacity: 0.5; cursor: default; }
+
+.player__error {
+  color: #ffb4b4;
+  padding: 4px 16px;
+  font-size: 13px;
 }
 
 .player__btnPlaySvg {
