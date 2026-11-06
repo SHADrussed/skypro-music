@@ -74,12 +74,12 @@ test('selection, actual playback, pause/resume, switch and a single audio elemen
   expect(errors).toEqual([]);
 });
 
-test('natural ended event stops the indicator; selecting the same track restarts', async ({ page }) => {
-  await page.goto('/'); await choose(page, 0); await expectPlaying(page);
+test('last track ends without wrapping; selecting the same track restarts', async ({ page }) => {
+  await page.goto('/'); await choose(page, 9); await expectPlaying(page);
   await expect.poll(() => media(page).evaluate(audio => audio.ended), { timeout: 15000 }).toBe(true);
   await expect(indicator(page)).toHaveAttribute('data-playing', 'false');
   await expect(page.getByRole('button', { name: 'Воспроизвести', exact: true })).toBeEnabled();
-  await choose(page, 0); await expectPlaying(page);
+  await choose(page, 9); await expectPlaying(page);
 });
 
 test('unavailable source stays stopped and recovers on another track', async ({ page }) => {

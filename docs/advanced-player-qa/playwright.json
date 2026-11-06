@@ -1,0 +1,1665 @@
+{
+  "command": "QA_REAL_AUDIO=1 npm run qa",
+  "stats": {
+    "startTime": "2026-11-03T11:20:12.405Z",
+    "duration": 279059.746,
+    "expected": 64,
+    "skipped": 2,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "tests": [
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "next/previous respect boundaries and switch actual playback",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2692,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "natural ended advances to the next track",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2565,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "shuffle avoids repeats within a cycle and previous retraces playback history",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4828,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "loop has priority over shuffle, and disabling loop allows ended navigation",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 6252,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "seek and volume control real media properties without restarting the track",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1965,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "next/previous respect boundaries and switch actual playback",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2110,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "natural ended advances to the next track",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2089,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "shuffle avoids repeats within a cycle and previous retraces playback history",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 5867,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "loop has priority over shuffle, and disabling loop allows ended navigation",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 6126,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "seek and volume control real media properties without restarting the track",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1897,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "next/previous respect boundaries and switch actual playback",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2378,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "natural ended advances to the next track",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2351,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "shuffle avoids repeats within a cycle and previous retraces playback history",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 5035,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "loop has priority over shuffle, and disabling loop allows ended navigation",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 6256,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "advanced-player.spec.mjs",
+      "title": "seek and volume control real media properties without restarting the track",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1675,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "selection, actual playback, pause/resume, switch and a single audio element",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2374,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "last track ends without wrapping; selecting the same track restarts",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 13439,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "unavailable source stays stopped and recovers on another track",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1030,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "rejected play promise is handled without claiming playback",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 898,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "rapid selection cancels the previous pending play request",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1104,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "retry the same source after a temporary load failure",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 961,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "pending playback can be paused before the source finishes loading",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1049,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "navigation disposes the previous audio element before returning to the player",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1735,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "selection, actual playback, pause/resume, switch and a single audio element",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2357,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "last track ends without wrapping; selecting the same track restarts",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 13260,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "unavailable source stays stopped and recovers on another track",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 907,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "rejected play promise is handled without claiming playback",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 841,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "rapid selection cancels the previous pending play request",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 899,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "retry the same source after a temporary load failure",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 921,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "pending playback can be paused before the source finishes loading",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 948,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "navigation disposes the previous audio element before returning to the player",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1635,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "selection, actual playback, pause/resume, switch and a single audio element",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2380,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "last track ends without wrapping; selecting the same track restarts",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 13557,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "unavailable source stays stopped and recovers on another track",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 879,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "rejected play promise is handled without claiming playback",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 874,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "rapid selection cancels the previous pending play request",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 920,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "retry the same source after a temporary load failure",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 924,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "pending playback can be paused before the source finishes loading",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 930,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "audio-player.spec.mjs",
+      "title": "navigation disposes the previous audio element before returning to the player",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1522,
+          "errors": [],
+          "attachments": []
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /: assets, console, network, geometry",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 580,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /signin: assets, console, network, geometry",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 413,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /signup: assets, console, network, geometry",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 356,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /favourites: assets, console, network, geometry",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 349,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "menu toggles by mouse and keyboard and navigates",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 628,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "filters switch directly, deduplicate data, scroll and leave tracks unchanged",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1821,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "Figma desktop font metrics and layout anchors",
+      "project": "mobile",
+      "status": "skipped",
+      "expectedStatus": "skipped",
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 113,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /: assets, console, network, geometry",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 477,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /signin: assets, console, network, geometry",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 356,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /signup: assets, console, network, geometry",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 352,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /favourites: assets, console, network, geometry",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 357,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "menu toggles by mouse and keyboard and navigates",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 615,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "filters switch directly, deduplicate data, scroll and leave tracks unchanged",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1823,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "Figma desktop font metrics and layout anchors",
+      "project": "tablet",
+      "status": "skipped",
+      "expectedStatus": "skipped",
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 113,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /: assets, console, network, geometry",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 507,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /signin: assets, console, network, geometry",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 364,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /signup: assets, console, network, geometry",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 399,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "route /favourites: assets, console, network, geometry",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 378,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "menu toggles by mouse and keyboard and navigates",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 641,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "filters switch directly, deduplicate data, scroll and leave tracks unchanged",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2067,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "music.spec.mjs",
+      "title": "Figma desktop font metrics and layout anchors",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 531,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "font-diagnostics",
+              "data": {
+                "family": "stratos, \"stratos Fallback\"",
+                "loaded": true,
+                "faces": [
+                  {
+                    "family": "stratos",
+                    "status": "loaded"
+                  },
+                  {
+                    "family": "stratos Fallback",
+                    "status": "unloaded"
+                  }
+                ],
+                "sampleWidth": 32.65596008300781,
+                "headingTextWidth": 171.171875
+              }
+            },
+            {
+              "name": "figma-anchor-measurements",
+              "data": {
+                "typography": {
+                  "family": "stratos, \"stratos Fallback\"",
+                  "loaded": true,
+                  "faces": [
+                    {
+                      "family": "stratos",
+                      "status": "loaded"
+                    },
+                    {
+                      "family": "stratos Fallback",
+                      "status": "unloaded"
+                    }
+                  ],
+                  "sampleWidth": 32.65596008300781,
+                  "headingTextWidth": 171.171875
+                },
+                "measurements": [
+                  {
+                    "expected": {
+                      "x": 294,
+                      "y": 122,
+                      "height": 72
+                    },
+                    "actual": {
+                      "x": 294,
+                      "y": 122,
+                      "width": 1108,
+                      "height": 72
+                    }
+                  },
+                  {
+                    "expected": {
+                      "x": 386,
+                      "y": 239
+                    },
+                    "actual": {
+                      "x": 385.96875,
+                      "y": 239,
+                      "width": 145.265625,
+                      "height": 38
+                    }
+                  },
+                  {
+                    "expected": {
+                      "x": 294,
+                      "y": 20,
+                      "width": 1293
+                    },
+                    "actual": {
+                      "x": 294,
+                      "y": 20,
+                      "width": 1293,
+                      "height": 52
+                    }
+                  },
+                  {
+                    "expected": {
+                      "x": 294,
+                      "y": 388,
+                      "width": 51,
+                      "height": 51
+                    },
+                    "actual": {
+                      "x": 294,
+                      "y": 388,
+                      "width": 51,
+                      "height": 51
+                    }
+                  },
+                  {
+                    "expected": {
+                      "x": 775
+                    },
+                    "actual": {
+                      "x": 775,
+                      "y": 401.5,
+                      "width": 321,
+                      "height": 24
+                    }
+                  },
+                  {
+                    "expected": {
+                      "x": 1096
+                    },
+                    "actual": {
+                      "x": 1096,
+                      "y": 401.5,
+                      "width": 245,
+                      "height": 24
+                    }
+                  },
+                  {
+                    "expected": {
+                      "x": 1580,
+                      "y": 428,
+                      "width": 250,
+                      "height": 150
+                    },
+                    "actual": {
+                      "x": 1580,
+                      "y": 428,
+                      "width": 250,
+                      "height": 150
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "browser-diagnostics",
+              "data": {
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "real-audio.spec.mjs",
+      "title": "real MP3 URLs decode and actually play without intercepted responses",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 30964,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "real-source-playback",
+              "data": {
+                "results": [
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Alexander_Nakarada_-_Chase.mp3",
+                    "currentTime": 0.822357,
+                    "duration": 128.6991,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Frank_Schroter_-_Open_Sea_epic.mp3",
+                    "currentTime": 0.415109,
+                    "duration": 141.176463,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Kevin_Macleod_-_Sneaky_Snitch.mp3",
+                    "currentTime": 0.616801,
+                    "duration": 136.620425,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Mixkit_-_Secret_Garden.mp3",
+                    "currentTime": 0.402503,
+                    "duration": 153.000249,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_A_Journey_For_Successful_Winners.mp3",
+                    "currentTime": 1.275696,
+                    "duration": 162.532971,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_Epic_Heroic_Conquest.mp3",
+                    "currentTime": 0.863749,
+                    "duration": 170.059271,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/musiclfiles_-_The_March_Of_The_Final_Battle.mp3",
+                    "currentTime": 0.604602,
+                    "duration": 135.410748,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_True_Summer.mp3",
+                    "currentTime": 1.159558,
+                    "duration": 120.023537,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Waltz_Piano_-_Background_Sensible.mp3",
+                    "currentTime": 1.24325,
+                    "duration": 136.761247,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Winniethemoog_-_Action_Sport_Breakbeat.mp3",
+                    "currentTime": 0.999047,
+                    "duration": 109.473673,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  }
+                ],
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "real-audio.spec.mjs",
+      "title": "advanced controls operate on the actual remote MP3 audio",
+      "project": "mobile",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 12085,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "real-advanced-playback",
+              "data": {
+                "duration": 128.6991,
+                "source": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Frank_Schroter_-_Open_Sea_epic.mp3",
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "real-audio.spec.mjs",
+      "title": "real MP3 URLs decode and actually play without intercepted responses",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 40328,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "real-source-playback",
+              "data": {
+                "results": [
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Alexander_Nakarada_-_Chase.mp3",
+                    "currentTime": 1.06407,
+                    "duration": 128.6991,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Frank_Schroter_-_Open_Sea_epic.mp3",
+                    "currentTime": 0.845635,
+                    "duration": 141.176463,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Kevin_Macleod_-_Sneaky_Snitch.mp3",
+                    "currentTime": 0.665797,
+                    "duration": 136.620425,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Mixkit_-_Secret_Garden.mp3",
+                    "currentTime": 1.190716,
+                    "duration": 153.000249,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_A_Journey_For_Successful_Winners.mp3",
+                    "currentTime": 1.058324,
+                    "duration": 162.532971,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_Epic_Heroic_Conquest.mp3",
+                    "currentTime": 0.606953,
+                    "duration": 170.059271,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/musiclfiles_-_The_March_Of_The_Final_Battle.mp3",
+                    "currentTime": 1.333639,
+                    "duration": 135.410748,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_True_Summer.mp3",
+                    "currentTime": 0.849415,
+                    "duration": 120.023537,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Waltz_Piano_-_Background_Sensible.mp3",
+                    "currentTime": 0.542737,
+                    "duration": 136.761247,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Winniethemoog_-_Action_Sport_Breakbeat.mp3",
+                    "currentTime": 1.202902,
+                    "duration": 109.473673,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  }
+                ],
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "real-audio.spec.mjs",
+      "title": "advanced controls operate on the actual remote MP3 audio",
+      "project": "tablet",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 16037,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "real-advanced-playback",
+              "data": {
+                "duration": 128.6991,
+                "source": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Frank_Schroter_-_Open_Sea_epic.mp3",
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "real-audio.spec.mjs",
+      "title": "real MP3 URLs decode and actually play without intercepted responses",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 28310,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "real-source-playback",
+              "data": {
+                "results": [
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Alexander_Nakarada_-_Chase.mp3",
+                    "currentTime": 0.914354,
+                    "duration": 128.6991,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Frank_Schroter_-_Open_Sea_epic.mp3",
+                    "currentTime": 1.060555,
+                    "duration": 141.176463,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Kevin_Macleod_-_Sneaky_Snitch.mp3",
+                    "currentTime": 0.665442,
+                    "duration": 136.620425,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Mixkit_-_Secret_Garden.mp3",
+                    "currentTime": 1.032416,
+                    "duration": 153.000249,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_A_Journey_For_Successful_Winners.mp3",
+                    "currentTime": 1.136092,
+                    "duration": 162.532971,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_Epic_Heroic_Conquest.mp3",
+                    "currentTime": 0.906949,
+                    "duration": 170.059271,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/musiclfiles_-_The_March_Of_The_Final_Battle.mp3",
+                    "currentTime": 1.266852,
+                    "duration": 135.410748,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Musiclfiles_-_True_Summer.mp3",
+                    "currentTime": 0.928259,
+                    "duration": 120.023537,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Waltz_Piano_-_Background_Sensible.mp3",
+                    "currentTime": 0.587399,
+                    "duration": 136.761247,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  },
+                  {
+                    "url": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Winniethemoog_-_Action_Sport_Breakbeat.mp3",
+                    "currentTime": 0.679824,
+                    "duration": 109.473673,
+                    "paused": false,
+                    "readyState": 4,
+                    "error": null
+                  }
+                ],
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "real-audio.spec.mjs",
+      "title": "advanced controls operate on the actual remote MP3 audio",
+      "project": "desktop",
+      "status": "expected",
+      "expectedStatus": "passed",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 10296,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "real-advanced-playback",
+              "data": {
+                "duration": 128.6991,
+                "source": "https://webdev-music-003b5b991590.herokuapp.com/media/music_files/Frank_Schroter_-_Open_Sea_epic.mp3",
+                "errors": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

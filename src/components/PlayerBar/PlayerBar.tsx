@@ -2,16 +2,24 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { setIsPlaying } from "@/store/playerSlice";
+import { setIsPlaying, nextTrack, previousTrack, toggleShuffle, toggleLoop, setVolume, canGoNext, canGoPrevious } from "@/store/playerSlice";
 import cn from "classnames";
 import Link from "next/link";
 import styles from "./PlayerBar.module.css";
+
+function formatTime(value: number) {
+  const seconds = Math.max(0, Math.floor(value));
+  return `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
+}
 
 export default function PlayerBar() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const requestRef = useRef(0);
   const dispatch = useAppDispatch();
-  const { currentTrack, isPlaying } = useAppSelector(state => state.player);
+  const { currentTrack, isPlaying, isShuffle, isLoop, volume } = useAppSelector(state => state.player);
+  const hasNext = useAppSelector(state => canGoNext(state.player));
+  const hasPrevious = useAppSelector(state => canGoPrevious(state.player));
+  const [progress, setProgress] = useState({ source: "", time: 0, duration: 0 });
   // Pending playback can be paused even before media is ready (isPlaying=false).
   const [playbackRequested, setPlaybackRequested] = useState(false);
   const [error, setError] = useState<{ source: string; message: string } | null>(null);
@@ -49,6 +57,27 @@ export default function PlayerBar() {
     };
   }, [currentTrack, dispatch, startPlayback, invalidatePlayback]);
 
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.volume = volume;
+  }, [volume]);
+
+  function syncProgress() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const duration = Number.isFinite(audio.duration) ? Math.max(0, audio.duration) : 0;
+    setProgress({ source: audio.getAttribute("src") ?? "", time: Math.min(Math.max(0, audio.currentTime), duration), duration });
+  }
+
+  const duration = progress.source === currentTrack?.track_file ? progress.duration : 0;
+  const currentTime = progress.source === currentTrack?.track_file ? progress.time : 0;
+
+  function seek(value: number) {
+    const audio = audioRef.current;
+    if (!audio || !duration || !Number.isFinite(value)) return;
+    audio.currentTime = Math.min(duration, Math.max(0, value));
+    syncProgress();
+  }
+
   function togglePlayback() {
     const audio = audioRef.current;
     if (!audio || !currentTrack) return;
@@ -69,10 +98,18 @@ export default function PlayerBar() {
 
   return (
     <div className={styles.bar}>
-      <audio ref={audioRef} preload="none"
+      <audio ref={audioRef} preload="none" loop={isLoop}
         onPlay={syncPlayback} onPlaying={syncPlayback} onPause={syncPlayback}
+        onLoadedMetadata={syncProgress} onDurationChange={syncProgress} onTimeUpdate={syncProgress} onEmptied={syncProgress}
+        onSeeking={() => dispatch(setIsPlaying(false))}
+        onSeeked={() => { syncProgress(); syncPlayback(); }}
+        onVolumeChange={() => { if (audioRef.current) dispatch(setVolume(audioRef.current.volume)); }}
         onWaiting={() => dispatch(setIsPlaying(false))}
-        onEnded={syncPlayback}
+        onEnded={() => {
+          syncPlayback(); syncProgress();
+          // Native loop has priority and normally prevents ended from firing.
+          if (!audioRef.current?.loop) dispatch(nextTrack());
+        }}
         onError={() => {
           const audio = audioRef.current;
           if (!audio?.error) return;
@@ -85,15 +122,20 @@ export default function PlayerBar() {
       />
       {error && error.source === currentTrack?.track_file && <p role="alert" className={styles.player__error}>{error.message}</p>}
       <div className={styles.bar__content}>
-        <div className={styles.bar__playerProgress}></div>
+        <input className={styles.bar__playerProgress} type="range" aria-label="Позиция воспроизведения"
+          min={0} max={duration || 1} step={0.01} value={currentTime} disabled={!duration}
+          aria-valuetext={`${formatTime(currentTime)} / ${formatTime(duration)}`}
+          style={{ background: `linear-gradient(to right, #b672ff ${duration ? currentTime / duration * 100 : 0}%, #2e2e2e 0%)` }}
+          onChange={event => seek(Number(event.target.value))} />
         <div className={styles.bar__playerBlock}>
           <div className={styles.bar__player}>
             <div className={styles.player__controls}>
-              <div className={styles.player__btnPrev}>
+              <button type="button" aria-label="Предыдущий трек" disabled={!hasPrevious}
+                onClick={() => dispatch(previousTrack())} className={styles.player__btnPrev}>
                 <svg className={styles.player__btnPrevSvg}>
                   <use xlinkHref="/img/icon/sprite.svg#icon-prev"></use>
                 </svg>
-              </div>
+              </button>
               <button type="button" className={cn(styles.player__btnPlay, styles.btn)}
                 aria-label={canPause ? "Пауза" : "Воспроизвести"}
                 disabled={!currentTrack} onClick={togglePlayback}>
@@ -103,21 +145,24 @@ export default function PlayerBar() {
                   <use xlinkHref="/img/icon/sprite.svg#icon-play"></use>
                 </svg>}
               </button>
-              <div className={styles.player__btnNext}>
+              <button type="button" aria-label="Следующий трек" disabled={!hasNext}
+                onClick={() => dispatch(nextTrack())} className={styles.player__btnNext}>
                 <svg className={styles.player__btnNextSvg}>
                   <use xlinkHref="/img/icon/sprite.svg#icon-next"></use>
                 </svg>
-              </div>
-              <div className={cn(styles.player__btnRepeat, styles.btnIcon)}>
+              </button>
+              <button type="button" aria-label="Повтор трека" aria-pressed={isLoop}
+                onClick={() => dispatch(toggleLoop())} className={cn(styles.player__btnRepeat, styles.btnIcon)}>
                 <svg className={styles.player__btnRepeatSvg}>
                   <use xlinkHref="/img/icon/sprite.svg#icon-repeat"></use>
                 </svg>
-              </div>
-              <div className={cn(styles.player__btnShuffle, styles.btnIcon)}>
+              </button>
+              <button type="button" aria-label="Случайный порядок" aria-pressed={isShuffle}
+                onClick={() => dispatch(toggleShuffle())} className={cn(styles.player__btnShuffle, styles.btnIcon)}>
                 <svg className={styles.player__btnShuffleSvg}>
                   <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
                 </svg>
-              </div>
+              </button>
             </div>
 
             <div className={styles.player__trackPlay}>
@@ -154,6 +199,7 @@ export default function PlayerBar() {
             </div>
           </div>
           <div className={styles.bar__volumeBlock}>
+            <span className={styles.player__time} data-testid="playback-time">{formatTime(currentTime)} / {formatTime(duration)}</span>
             <div className={styles.volume__content}>
               <div className={styles.volume__image}>
                 <svg className={styles.volume__svg}>
@@ -164,7 +210,8 @@ export default function PlayerBar() {
                 <input
                   className={cn(styles.volume__progressLine, styles.btn)}
                   type="range"
-                  name="range"
+                  aria-label="Громкость" min={0} max={1} step={0.01} value={volume}
+                  onChange={event => dispatch(setVolume(Number(event.target.value)))}
                 />
               </div>
             </div>
