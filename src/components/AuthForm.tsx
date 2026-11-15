@@ -48,7 +48,7 @@ export default function AuthForm({ mode }: { mode: "signin" | "signup" }) {
       <input className={styles.modal__input} type="email" name="email" placeholder="Почта" aria-label="Почта" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} required />
       <input className={styles.modal__input} type="password" name="password" placeholder="Пароль" aria-label="Пароль" autoComplete={signup ? "new-password" : "current-password"} value={password} onChange={e => setPassword(e.target.value)} required minLength={6} />
       {signup && <input className={styles.modal__input} type="password" name="confirmPassword" placeholder="Повторите пароль" aria-label="Повторите пароль" value={confirm} onChange={e => setConfirm(e.target.value)} required />}
-      {error && <p role="alert">{error}</p>}
+      {error && <p role="alert" className={styles.errorContainer}>{error}</p>}
       <button className={styles.modal__btnEnter} type="submit" disabled={busy}>{busy ? "Подождите…" : signup ? "Зарегистрироваться" : "Войти"}</button>
       <Link href={signup ? "/signin" : "/signup"} className={styles.modal__btnSignup}>{signup ? "Войти" : "Зарегистрироваться"}</Link>
     </form>

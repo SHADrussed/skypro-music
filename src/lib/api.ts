@@ -1,6 +1,6 @@
 import type { Track } from "@/types/types";
 
-const API = "https://webdev-music-003b5b991590.herokuapp.com";
+const API = process.env.SKYPRO_API_BASE ?? "https://webdev-music-003b5b991590.herokuapp.com";
 
 export class ApiError extends Error {
   constructor(message: string, public status?: number) {

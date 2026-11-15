@@ -12,6 +12,7 @@ export default defineConfig({
   },
   webServer: {
     command: 'npm run start -- --hostname 127.0.0.1 --port 4187',
+    env: { SKYPRO_API_BASE: 'http://127.0.0.1:4187/api/qa' },
     url: 'http://127.0.0.1:4187',
     reuseExistingServer: !process.env.CI,
     timeout: 60000,

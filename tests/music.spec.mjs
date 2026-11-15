@@ -12,6 +12,7 @@ function visit(node) {
       if (!ts.isPropertyAssignment(property)) continue;
       const key = property.name.getText(source);
       if (ts.isStringLiteral(property.initializer)) track[key] = property.initializer.text;
+      if (ts.isNumericLiteral(property.initializer)) track[key] = Number(property.initializer.text);
       if (ts.isArrayLiteralExpression(property.initializer)) {
         track[key] = property.initializer.elements.filter(ts.isStringLiteral).map(item => item.text);
       }
@@ -25,6 +26,7 @@ visit(source);
 const browserErrors = new WeakMap();
 
 test.beforeEach(async ({ page }) => {
+  await page.route('**/catalog/track/all/', route => route.fulfill({ json: { success: true, data: tracks.map(track => ({ ...track, staredUser: [] })) } }));
   const errors = [];
   browserErrors.set(page, errors);
   page.on('pageerror', error => errors.push(error.message));
@@ -77,7 +79,7 @@ test('menu toggles by mouse and keyboard and navigates', async ({ page }) => {
   await expect(page).toHaveURL(/\/favourites$/);
 });
 
-test('filters switch directly, deduplicate data, scroll and leave tracks unchanged', async ({ page }, testInfo) => {
+test('filters use API data and update the visible list', async ({ page }, testInfo) => {
   await page.goto('/');
   const playlist = page.locator('[class*="playlist__item"]');
   const original = await playlist.allTextContents();
@@ -100,10 +102,15 @@ test('filters switch directly, deduplicate data, scroll and leave tracks unchang
     expect(bounds.x).toBeGreaterThanOrEqual(0);
     expect(bounds.x + bounds.width).toBeLessThanOrEqual(page.viewportSize().width);
     await page.screenshot({ path: testInfo.outputPath(`${label}.png`) });
-    for (const option of options) {
-      await panels.getByRole('button', { name: option, exact: true }).click();
-      expect(await playlist.allTextContents()).toEqual(original);
-    }
+    const option = options[0];
+    await panels.getByRole('button', { name: option, exact: true }).click();
+    if (label === 'исполнителю') await expect.poll(() => playlist.count()).toBeLessThan(original.length);
+    if (label === 'жанру') await expect.poll(() => playlist.count()).toBeLessThanOrEqual(original.length);
+    if (label === 'году выпуска') await expect(playlist).toHaveCount(original.length);
+    await button.click();
+    await page.getByRole('region', { name: /Варианты:/ }).getByRole('button', { name: option, exact: true }).click();
+    await expect.poll(() => playlist.allTextContents()).toEqual(original);
+    await button.click();
     if (label === 'исполнителю') {
       const list = panels.locator('ul');
       expect(await list.evaluate(el => el.scrollHeight > el.clientHeight)).toBe(true);

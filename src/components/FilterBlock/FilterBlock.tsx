@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch } from "@/store/hooks";
 import { setPlaylist } from "@/store/playerSlice";
 import cn from "classnames";
@@ -12,7 +12,6 @@ type FilterName = "author" | "year" | "genre";
 
 export default function FilterBlock({ tracks }: { tracks: Track[] }) {
   const dispatch = useAppDispatch();
-  useEffect(() => { dispatch(setPlaylist(tracks)); }, [dispatch, tracks]);
   const [activeFilter, setActiveFilter] = useState<FilterName | null>(null);
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
@@ -22,8 +21,12 @@ export default function FilterBlock({ tracks }: { tracks: Track[] }) {
     { id: "year", label: "году выпуска", options: ["По возрастанию", "По убыванию"] },
     { id: "genre", label: "жанру", options: [...new Set(tracks.flatMap(track => track.genre))] },
   ];
-  const filtered = tracks.filter(track => (!author || track.author === author) && (!genre || track.genre.includes(genre)));
-  if (year) filtered.sort((a, b) => year === "По возрастанию" ? a.release_date.localeCompare(b.release_date) : b.release_date.localeCompare(a.release_date));
+  const filtered = useMemo(() => {
+    const result = tracks.filter(track => (!author || track.author === author) && (!genre || track.genre.includes(genre)));
+    if (year) result.sort((a, b) => year === "По возрастанию" ? a.release_date.localeCompare(b.release_date) : b.release_date.localeCompare(a.release_date));
+    return result;
+  }, [tracks, author, genre, year]);
+  useEffect(() => { dispatch(setPlaylist(filtered)); }, [dispatch, filtered]);
 
   return (
     <><div
