@@ -1,5 +1,6 @@
 .bar {
-  position: absolute;
+  position: fixed;
+  z-index: 3;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -359,4 +360,16 @@
     color: #ad61ff;
     cursor: pointer;
   }
+}
+
+@media (max-width: 1100px) {
+  .bar__volumeBlock { padding-right: 24px; }
+  .trackPlay__likeDis { margin-left: 16px; }
+  .trackPlay__dislike { margin-left: 8px; }
+}
+@media (max-width: 600px) {
+  .bar__playerBlock { height: auto; min-height: 73px; flex-wrap: wrap; justify-content: center; padding: 8px; gap: 8px; }
+  .bar__player { flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .player__controls { padding: 0; }
+  .bar__volumeBlock { padding: 0; }
 }

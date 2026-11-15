@@ -1,73 +1,63 @@
 "use client";
-import { useState } from "react";
-import styles from "./FilterBlock.module.css";
-import classNames from "classnames";
 
-type FilterName = "artist" | "year" | "genre";
-// export const filters: FilterItem[] = [
-//   { name: "исполнителю", items: ["Tame Impala", "Arctic Monkeys"] },
-//   { name: "году выпуска", items: ["2024", "2025", "2026"] },
-//   { name: "жанру", items: ["Rock", "Indie", "Pop"] },
-// ];
+import { useState } from "react";
+import cn from "classnames";
+import { data } from "@/data/data";
+import styles from "./FilterBlock.module.css";
+
+type FilterName = "author" | "year" | "genre";
+
+const filters: { id: FilterName; label: string; options: string[] }[] = [
+  { id: "author", label: "исполнителю", options: [...new Set(data.map((track) => track.author))] },
+  { id: "year", label: "году выпуска", options: ["По возрастанию", "По убыванию"] },
+  { id: "genre", label: "жанру", options: [...new Set(data.flatMap((track) => track.genre))] },
+];
 
 export default function FilterBlock() {
   const [activeFilter, setActiveFilter] = useState<FilterName | null>(null);
-  const nameFilter = "artist";
-  const yearFilter = "year";
-  const genreFilter = "genre";
-  const items = ["Rock", "Indie", "Pop", "Rock1", "Indie2", "Pop3"];
 
   return (
-    <div className={styles.centerblock__filter}>
+    <div
+      className={styles.centerblock__filter}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && activeFilter) {
+          document.getElementById(`filter-${activeFilter}`)?.focus();
+          setActiveFilter(null);
+        }
+      }}
+    >
       <div className={styles.filter__title}>Искать по:</div>
-      <div className={styles.filter__item}>
-        <div
-          onClick={() =>
-            setActiveFilter(activeFilter === nameFilter ? null : nameFilter)
-          }
-          className={classNames(styles.filter__button, {
-            [styles.active]: activeFilter === nameFilter,
-          })}
-        >
-          исполнителю
+      {filters.map(({ id, label, options }) => (
+        <div className={styles.filter__category} key={id}>
+          <button
+            type="button"
+            id={`filter-${id}`}
+            aria-expanded={activeFilter === id}
+            aria-controls={`filter-options-${id}`}
+            className={cn(styles.filter__button, { [styles.filter__buttonActive]: activeFilter === id })}
+            onClick={() => setActiveFilter((current) => current === id ? null : id)}
+          >
+            {label}
+          </button>
+          {activeFilter === id && (
+            <section
+              id={`filter-options-${id}`}
+              aria-label={`Варианты: ${label}`}
+              className={styles.filter__popup}
+            >
+              <ul className={styles.filter__list}>
+                {options.map((option) => (
+                  <li key={option}>
+                    <button type="button" className={styles.filter__option}>
+                      {option}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </div>
-        {!!activeFilter &&
-          activeFilter ===
-            nameFilter(
-              <div className={styles.filter_container}>
-                <div className={styles.filter__list}>
-                  {items.map((item) => (
-                    <p key={item}>{item}</p>
-                  ))}
-                </div>
-              </div>,
-            )}
-      </div>
-
-      <div className={styles.filter__item}>
-        <div
-          onClick={() =>
-            setActiveFilter(activeFilter === yearFilter ? null : yearFilter)
-          }
-          className={classNames(styles.filter__button, {
-            [styles.active]: activeFilter === yearFilter,
-          })}
-        >
-          году выпуска
-        </div>
-      </div>
-      <div className={styles.filter__item}>
-        <div
-          onClick={() =>
-            setActiveFilter(activeFilter === genreFilter ? null : genreFilter)
-          }
-          className={classNames(styles.filter__button, {
-            [styles.active]: activeFilter === genreFilter,
-          })}
-        >
-          жанру
-        </div>
-      </div>
+      ))}
     </div>
   );
 }

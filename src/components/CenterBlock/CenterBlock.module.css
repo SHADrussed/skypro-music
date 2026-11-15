@@ -1,9 +1,10 @@
 .centerblock {
   width: auto;
+  min-width: 0;
   -webkit-box-flex: 3;
   -ms-flex-positive: 3;
   flex-grow: 3;
-  padding: 20px 40px 20px 111px;
+  padding: 20px 100px 20px 50px;
 }
 
 .centerblock__h2 {
@@ -15,3 +16,12 @@
   margin-bottom: 45px;
 }
 
+
+@media (max-width: 1600px) {
+  .centerblock { padding: 20px 24px; }
+}
+@media (max-width: 1100px) { .centerblock { width: 100%; } }
+@media (max-width: 600px) {
+  .centerblock { padding: 16px; }
+  .centerblock__h2 { font-size: 40px; line-height: 48px; margin-bottom: 24px; }
+}
