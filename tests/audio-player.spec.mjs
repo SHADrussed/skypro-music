@@ -13,7 +13,7 @@ wav.write('data', 36); wav.writeUInt32LE(samples * 2, 40);
 for (let i = 0; i < samples; i++) wav.writeInt16LE(Math.round(1000 * Math.sin(2 * Math.PI * 440 * i / sampleRate)), 44 + i * 2);
 
 const rows = page => page.locator('[class*="playlist__item"]');
-const choose = (page, index) => rows(page).nth(index).getByRole('button').click();
+const choose = (page, index) => rows(page).nth(index).getByRole('button', { name: /Воспроизвести/ }).click();
 const media = page => page.locator('audio');
 const indicator = page => page.getByTestId('playback-indicator');
 
@@ -169,8 +169,8 @@ test('navigation disposes the previous audio element before returning to the pla
   await page.goto('/'); await choose(page, 0); await expectPlaying(page);
   await media(page).evaluate(audio => { window.retiredAudio = audio; });
   await page.getByRole('button', { name: 'Меню', exact: true }).click();
-  await page.getByRole('link', { name: 'Мои треки', exact: true }).click();
-  await expect(page).toHaveURL(/\/favourites$/);
+  await page.locator('#navigation-menu').getByRole('link', { name: 'Войти', exact: true }).click();
+  await expect(page).toHaveURL(/\/signin$/);
   await expect.poll(() => page.evaluate(() => window.retiredAudio.paused && !window.retiredAudio.hasAttribute('src'))).toBe(true);
   await page.goto('/');
   await choose(page, 1); await expectPlaying(page);

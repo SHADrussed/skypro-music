@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { selectTrack } from "@/store/playerSlice";
 import styles from "./PlaylistItem.module.css";
 import Link from "next/link";
+import FavoriteButton from "@/components/FavoriteButton";
+import { memo } from "react";
 
 function formatMinutesSeconds(totalSeconds: number): string {
   const minutes = Math.floor(totalSeconds / 60);
@@ -17,10 +19,10 @@ function formatMinutesSeconds(totalSeconds: number): string {
   return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-export default function PlaylistItem({ track }: { track: Track }) {
+function PlaylistItem({ track }: { track: Track }) {
   const dispatch = useAppDispatch();
   const isCurrent = useAppSelector(state => state.player.currentTrack?._id === track._id);
-  const isPlaying = useAppSelector(state => state.player.isPlaying);
+  const isPlaying = useAppSelector(state => state.player.currentTrack?._id === track._id && state.player.isPlaying);
   return (
     <div className={styles.playlist__item}>
       <div className={styles.playlist__track}>
@@ -54,9 +56,7 @@ export default function PlaylistItem({ track }: { track: Track }) {
           </Link>
         </div>
         <div className={styles.track__time}>
-          <svg className={styles.track__timeSvg}>
-            <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
-          </svg>
+          <FavoriteButton track={track} />
           <span className={styles.track__timeText}>
             {formatMinutesSeconds(track.duration_in_seconds)}
           </span>
@@ -65,3 +65,4 @@ export default function PlaylistItem({ track }: { track: Track }) {
     </div>
   );
 }
+export default memo(PlaylistItem);

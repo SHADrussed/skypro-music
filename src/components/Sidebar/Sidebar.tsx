@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Sidebar.module.css";
 import type { Selection } from "@/lib/api";
+import AccountControls from "@/components/AccountControls";
 
 export default function Sidebar({ selections }: { selections: Selection[] }) {
   return (
     <div className={styles.main__sidebar}>
       <div className={styles.sidebar__personal}>
-        <p className={styles.sidebar__personalName}>Sergey.Ivanov</p>
+        <p className={styles.sidebar__personalName}><AccountControls /></p>
         <div className={styles.sidebar__icon}>
           <svg>
             <use xlinkHref="/img/icon/sprite.svg#logout"></use>

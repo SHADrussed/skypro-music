@@ -16,7 +16,7 @@ test('real MP3 URLs decode and actually play without intercepted responses', asy
   const rows = page.locator('[class*="playlist__item"]');
   expect(await rows.count()).toBe(sourceURLs.length);
   for (let i = 0; i < await rows.count(); i++) {
-    await rows.nth(i).getByRole('button').click();
+    await rows.nth(i).getByRole('button', { name: /Воспроизвести/ }).click();
     await expect(page.locator('audio')).toHaveAttribute('src', sourceURLs[i]);
     await expect.poll(() => page.locator('audio').evaluate(audio => audio.currentSrc), { timeout: 20000 }).toBe(sourceURLs[i]);
     await expect(page.getByRole('button', { name: 'Пауза', exact: true })).toBeVisible({ timeout: 20000 });
@@ -45,7 +45,7 @@ test('advanced controls operate on the actual remote MP3 audio', async ({ page }
   await page.goto('/');
   const media = page.locator('audio');
   const seek = page.getByRole('slider', { name: 'Позиция воспроизведения' });
-  await page.locator('[class*="playlist__item"]').first().getByRole('button').click();
+  await page.locator('[class*="playlist__item"]').first().getByRole('button', { name: /Воспроизвести/ }).click();
   await expect.poll(() => media.evaluate(el => el.currentTime), { timeout: 20000 }).toBeGreaterThan(0.15);
   const duration = await media.evaluate(el => el.duration);
   expect(duration).toBeGreaterThan(100);
