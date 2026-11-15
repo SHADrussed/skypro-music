@@ -1,23 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "@/store/hooks";
+import { setPlaylist } from "@/store/playerSlice";
 import cn from "classnames";
-import { data } from "@/data/data";
+import type { Track } from "@/types/types";
+import ContentBlock from "@/components/ContentBlock/ContentBlock";
 import styles from "./FilterBlock.module.css";
 
 type FilterName = "author" | "year" | "genre";
 
-const filters: { id: FilterName; label: string; options: string[] }[] = [
-  { id: "author", label: "исполнителю", options: [...new Set(data.map((track) => track.author))] },
-  { id: "year", label: "году выпуска", options: ["По возрастанию", "По убыванию"] },
-  { id: "genre", label: "жанру", options: [...new Set(data.flatMap((track) => track.genre))] },
-];
-
-export default function FilterBlock() {
+export default function FilterBlock({ tracks }: { tracks: Track[] }) {
+  const dispatch = useAppDispatch();
+  useEffect(() => { dispatch(setPlaylist(tracks)); }, [dispatch, tracks]);
   const [activeFilter, setActiveFilter] = useState<FilterName | null>(null);
+  const [author, setAuthor] = useState("");
+  const [genre, setGenre] = useState("");
+  const [year, setYear] = useState("");
+  const filters: { id: FilterName; label: string; options: string[] }[] = [
+    { id: "author", label: "исполнителю", options: [...new Set(tracks.map(track => track.author))] },
+    { id: "year", label: "году выпуска", options: ["По возрастанию", "По убыванию"] },
+    { id: "genre", label: "жанру", options: [...new Set(tracks.flatMap(track => track.genre))] },
+  ];
+  const filtered = tracks.filter(track => (!author || track.author === author) && (!genre || track.genre.includes(genre)));
+  if (year) filtered.sort((a, b) => year === "По возрастанию" ? a.release_date.localeCompare(b.release_date) : b.release_date.localeCompare(a.release_date));
 
   return (
-    <div
+    <><div
       className={styles.centerblock__filter}
       onKeyDown={(event) => {
         if (event.key === "Escape" && activeFilter) {
@@ -48,7 +57,12 @@ export default function FilterBlock() {
               <ul className={styles.filter__list}>
                 {options.map((option) => (
                   <li key={option}>
-                    <button type="button" className={styles.filter__option}>
+                    <button type="button" className={styles.filter__option} onClick={() => {
+                      if (id === "author") setAuthor(current => current === option ? "" : option);
+                      if (id === "genre") setGenre(current => current === option ? "" : option);
+                      if (id === "year") setYear(current => current === option ? "" : option);
+                      setActiveFilter(null);
+                    }}>
                       {option}
                     </button>
                   </li>
@@ -58,6 +72,6 @@ export default function FilterBlock() {
           )}
         </div>
       ))}
-    </div>
+    </div>{filtered.length ? <ContentBlock tracks={filtered} /> : <p>Треков пока нет.</p>}</>
   );
 }

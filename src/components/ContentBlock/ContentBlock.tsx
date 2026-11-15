@@ -1,8 +1,9 @@
 import cn from "classnames";
 import PlaylistBlock from "@/components/PlaylistBlock/PlaylistBlock";
 import styles from "./ContentBlock.module.css";
+import type { Track } from "@/types/types";
 
-export default function ContentBlock() {
+export default function ContentBlock({ tracks }: { tracks: Track[] }) {
   return (
     <div className={styles.centerblock__content}>
       <div className={styles.content__title}>
@@ -19,7 +20,7 @@ export default function ContentBlock() {
           </svg>
         </div>
       </div>
-      <PlaylistBlock />
+      <PlaylistBlock tracks={tracks} />
     </div>
   );
 }

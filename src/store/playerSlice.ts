@@ -41,6 +41,7 @@ const playerSlice = createSlice({
   name: "player",
   initialState,
   reducers: {
+    setPlaylist(state, { payload }: PayloadAction<Track[]>) { state.playlist = payload; resetShuffle(state); },
     selectTrack(state, { payload }: PayloadAction<Track>) {
       if (!state.playlist.some(track => track._id === payload._id)) return;
       changeTrack(state, payload);
@@ -94,5 +95,5 @@ const playerSlice = createSlice({
   },
 });
 
-export const { selectTrack, setIsPlaying, nextTrack, previousTrack, toggleShuffle, toggleLoop, setVolume } = playerSlice.actions;
+export const { setPlaylist, selectTrack, setIsPlaying, nextTrack, previousTrack, toggleShuffle, toggleLoop, setVolume } = playerSlice.actions;
 export default playerSlice.reducer;
