@@ -6,12 +6,8 @@ import { setIsPlaying, nextTrack, previousTrack, toggleShuffle, toggleLoop, setV
 import cn from "classnames";
 import Link from "next/link";
 import FavoriteButton from "@/components/FavoriteButton";
+import { formatDuration } from "@/lib/formatDuration";
 import styles from "./PlayerBar.module.css";
-
-function formatTime(value: number) {
-  const seconds = Math.max(0, Math.floor(value));
-  return `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
-}
 
 export default function PlayerBar() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -125,7 +121,7 @@ export default function PlayerBar() {
       <div className={styles.bar__content}>
         <input className={styles.bar__playerProgress} type="range" aria-label="Позиция воспроизведения"
           min={0} max={duration || 1} step={0.01} value={currentTime} disabled={!duration}
-          aria-valuetext={`${formatTime(currentTime)} / ${formatTime(duration)}`}
+          aria-valuetext={`${formatDuration(currentTime)} / ${formatDuration(duration)}`}
           style={{ background: `linear-gradient(to right, #b672ff ${duration ? currentTime / duration * 100 : 0}%, #2e2e2e 0%)` }}
           onChange={event => seek(Number(event.target.value))} />
         <div className={styles.bar__playerBlock}>
@@ -196,7 +192,7 @@ export default function PlayerBar() {
             </div>
           </div>
           <div className={styles.bar__volumeBlock}>
-            <span className={styles.player__time} data-testid="playback-time">{formatTime(currentTime)} / {formatTime(duration)}</span>
+            <span className={styles.player__time} data-testid="playback-time">{formatDuration(currentTime)} / {formatDuration(duration)}</span>
             <div className={styles.volume__content}>
               <div className={styles.volume__image}>
                 <svg className={styles.volume__svg}>

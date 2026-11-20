@@ -1,0 +1,40 @@
+import type { Track } from "@/types/types";
+
+export const tracks: Track[] = [
+  {
+    _id: 1,
+    name: "Искра",
+    author: "Первый исполнитель",
+    release_date: "2020-01-01",
+    genre: ["Рок"],
+    duration_in_seconds: 180,
+    album: "Первый альбом",
+    logo: null,
+    track_file: "/test-audio/1.mp3",
+    stared_user: [],
+  },
+  {
+    _id: 2,
+    name: "Ночная искра",
+    author: "Второй исполнитель",
+    release_date: "2022-01-01",
+    genre: ["Поп"],
+    duration_in_seconds: 200,
+    album: "Второй альбом",
+    logo: null,
+    track_file: "/test-audio/2.mp3",
+    stared_user: [],
+  },
+  {
+    _id: 3,
+    name: "Искры",
+    author: "Первый исполнитель",
+    release_date: "2021-01-01",
+    genre: ["Рок", "Поп"],
+    duration_in_seconds: 160,
+    album: "Третий альбом",
+    logo: null,
+    track_file: "/test-audio/3.mp3",
+    stared_user: [],
+  },
+];

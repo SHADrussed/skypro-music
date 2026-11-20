@@ -4,20 +4,11 @@ import type { Track } from "@/types/types";
 import cn from "classnames";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { selectTrack } from "@/store/playerSlice";
+import { formatDuration } from "@/lib/formatDuration";
 import styles from "./PlaylistItem.module.css";
 import Link from "next/link";
 import FavoriteButton from "@/components/FavoriteButton";
 import { memo } from "react";
-
-function formatMinutesSeconds(totalSeconds: number): string {
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = Math.floor(totalSeconds % 60);
-
-  const formattedMinutes = String(minutes).padStart(2, "0");
-  const formattedSeconds = String(seconds).padStart(2, "0");
-
-  return `${formattedMinutes}:${formattedSeconds}`;
-}
 
 function PlaylistItem({ track }: { track: Track }) {
   const dispatch = useAppDispatch();
@@ -58,7 +49,7 @@ function PlaylistItem({ track }: { track: Track }) {
         <div className={styles.track__time}>
           <FavoriteButton track={track} />
           <span className={styles.track__timeText}>
-            {formatMinutesSeconds(track.duration_in_seconds)}
+            {formatDuration(track.duration_in_seconds)}
           </span>
         </div>
       </div>

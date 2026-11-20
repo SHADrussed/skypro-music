@@ -69,3 +69,18 @@
   .filter__category { position: static; }
   .filter__button { padding: 6px 12px; }
 }
+
+.filter__optionSelected {
+  color: #ad61ff;
+  text-decoration: underline;
+}
+
+.filter__button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.filter__button:disabled:hover {
+  color: inherit;
+  border-color: #ffffff;
+}
