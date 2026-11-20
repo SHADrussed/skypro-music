@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setIsPlaying, nextTrack, previousTrack, toggleShuffle, toggleLoop, setVolume, canGoNext, canGoPrevious } from "@/store/playerSlice";
 import cn from "classnames";
 import Link from "next/link";
+import FavoriteButton from "@/components/FavoriteButton";
 import styles from "./PlayerBar.module.css";
 
 function formatTime(value: number) {
@@ -185,11 +186,7 @@ export default function PlayerBar() {
               </div>
 
               <div className={styles.trackPlay__dislike}>
-                <div className={cn(styles.player__btnShuffle, styles.btnIcon)}>
-                  <svg className={styles.trackPlay__likeSvg}>
-                    <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
-                  </svg>
-                </div>
+                {currentTrack && <FavoriteButton track={currentTrack} />}
                 {/* <div className={cn(styles.trackPlay__dislike, styles.btnIcon)}>
                   <svg className={styles.trackPlay__dislikeSvg}>
                     <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>

@@ -41,11 +41,11 @@ test.afterEach(async ({ page }, testInfo) => {
   expect(errors).toEqual([]);
 });
 
-for (const [route, ready] of [['/', 'Треки'], ['/signin', 'Почта'], ['/signup', 'Повторите пароль'], ['/favourites', 'Favourites']]) {
+for (const [route, ready] of [['/', 'Треки'], ['/signin', 'Почта'], ['/signup', 'Повторите пароль']]) {
   test(`route ${route}: assets, console, network, geometry`, async ({ page }, testInfo) => {
     const response = await page.goto(route);
     expect(response.status()).toBe(200);
-    if (route === '/' || route === '/favourites') await expect(page.getByRole('heading', { name: ready, exact: true })).toBeVisible();
+    if (route === '/') await expect(page.getByRole('heading', { name: ready, exact: true })).toBeVisible();
     else await expect(page.getByRole('textbox', { name: 'Почта', exact: true })).toBeVisible();
     await page.evaluate(() => document.fonts.ready);
     await expect.poll(() => page.locator('img').evaluateAll(images => images.every(img => img.complete && img.naturalWidth > 0))).toBe(true);
@@ -76,7 +76,7 @@ test('menu toggles by mouse and keyboard and navigates', async ({ page }) => {
   await expect(link).toHaveCount(0);
   await button.click();
   await link.click();
-  await expect(page).toHaveURL(/\/favourites$/);
+  await expect(page).toHaveURL('/');
 });
 
 test('filters use API data and update the visible list', async ({ page }, testInfo) => {

@@ -3,7 +3,7 @@ import { makeWav, fulfillAudio } from './fixtures/audio.mjs';
 
 const audio = page => page.locator('audio');
 const rows = page => page.locator('[class*="playlist__item"]');
-const choose = (page, index) => rows(page).nth(index).getByRole('button').click();
+const choose = (page, index) => rows(page).nth(index).getByRole('button', { name: /Воспроизвести/ }).click();
 const next = page => page.getByRole('button', { name: 'Следующий трек', exact: true });
 const previous = page => page.getByRole('button', { name: 'Предыдущий трек', exact: true });
 const shuffle = page => page.getByRole('button', { name: 'Случайный порядок', exact: true });

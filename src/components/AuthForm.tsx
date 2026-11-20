@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ApiError, login, register } from "@/lib/api";
+import { writeSession } from "@/lib/session";
 import styles from "@/app/signin/signin.module.css";
 
 export default function AuthForm({ mode }: { mode: "signin" | "signup" }) {
@@ -33,7 +34,7 @@ export default function AuthForm({ mode }: { mode: "signin" | "signup" }) {
         router.push("/signin");
       } else {
         const session = await login(email.trim(), password);
-        localStorage.setItem("skypro-session", JSON.stringify(session));
+        writeSession(session);
         router.push("/");
       }
     } catch (cause) {
