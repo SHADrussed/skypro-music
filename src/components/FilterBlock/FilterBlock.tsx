@@ -4,12 +4,17 @@ import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch } from "@/store/hooks";
 import { setPlaylist } from "@/store/playerSlice";
 import cn from "classnames";
-import { searchTracks } from "@/lib/searchTracks";
+import { filterTracks } from "@/lib/filterTracks";
+import type { ReleaseOrder } from "@/lib/filterTracks";
 import type { Track } from "@/types/types";
 import ContentBlock from "@/components/ContentBlock/ContentBlock";
 import styles from "./FilterBlock.module.css";
 
 type FilterName = "author" | "year" | "genre";
+const releaseOrders = new Map<string, ReleaseOrder>([
+  ["По возрастанию", "ascending"],
+  ["По убыванию", "descending"],
+]);
 
 export default function FilterBlock({
   search,
@@ -34,7 +39,7 @@ export default function FilterBlock({
     {
       id: "year",
       label: "году выпуска",
-      options: ["По возрастанию", "По убыванию"],
+      options: [...releaseOrders.keys()],
     },
     {
       id: "genre",
@@ -42,20 +47,10 @@ export default function FilterBlock({
       options: [...new Set(tracks.flatMap((track) => track.genre))],
     },
   ];
-  const filtered = useMemo(() => {
-    const result = searchTracks(tracks, search).filter(
-      (track) =>
-        (!author || track.author === author) &&
-        (!genre || track.genre.includes(genre)),
-    );
-    if (year)
-      result.sort((a, b) =>
-        year === "По возрастанию"
-          ? a.release_date.localeCompare(b.release_date)
-          : b.release_date.localeCompare(a.release_date),
-      );
-    return result;
-  }, [tracks, search, author, genre, year]);
+  const filtered = useMemo(
+    () => filterTracks(tracks, search, author, genre, releaseOrders.get(year)),
+    [tracks, search, author, genre, year],
+  );
   useEffect(() => {
     dispatch(setPlaylist(filtered));
   }, [dispatch, filtered]);

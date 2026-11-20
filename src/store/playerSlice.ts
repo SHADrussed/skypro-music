@@ -1,8 +1,11 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { Track } from "@/types/types";
 import { data } from "@/data/data";
+import { canGoNext, canGoPrevious } from "./playerSelectors";
 
-type PlayerState = {
+export { canGoNext, canGoPrevious } from "./playerSelectors";
+
+export type PlayerState = {
   currentTrack: Track | null;
   isPlaying: boolean;
   playlist: Track[];
@@ -30,18 +33,13 @@ function resetShuffle(state: PlayerState) {
   state.remaining = state.playlist.filter(track => track._id !== state.currentTrack?._id).map(track => track._id);
 }
 
-export const canGoPrevious = (state: PlayerState) => state.currentTrack !== null && (
-  state.isShuffle ? state.historyIndex > 0 : state.playlist.findIndex(track => track._id === state.currentTrack?._id) > 0
-);
-export const canGoNext = (state: PlayerState) => state.currentTrack !== null && (
-  state.isShuffle ? state.playlist.length > 1 : state.playlist.findIndex(track => track._id === state.currentTrack?._id) < state.playlist.length - 1
-);
-
 const playerSlice = createSlice({
   name: "player",
   initialState,
   reducers: {
-    resetPlayer() { return initialState; },
+    resetPlayer(state) {
+      return { ...initialState, playlist: state.playlist };
+    },
     setPlaylist(state, { payload }: PayloadAction<Track[]>) { state.playlist = payload; resetShuffle(state); },
     selectTrack(state, { payload }: PayloadAction<Track>) {
       if (!state.playlist.some(track => track._id === payload._id)) return;

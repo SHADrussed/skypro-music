@@ -188,3 +188,36 @@ test('Figma desktop font metrics and layout anchors', async ({ page }, testInfo)
   await page.getByRole('button', { name: 'Меню', exact: true }).click();
   await page.screenshot({ path: testInfo.outputPath('figma-desktop-menu.png') });
 });
+
+test('search, artist, genre and sort work together and reset across routes', async ({ page }) => {
+  await page.goto('/');
+  const search = page.getByRole('searchbox', { name: 'Поиск треков' });
+  const rows = page.locator('[class*="playlist__item"]');
+  const first = tracks[0];
+  const choose = async (filter, option) => {
+    await page.getByRole('button', { name: filter, exact: true }).click();
+    await page.getByRole('region', { name: /Варианты:/ })
+      .getByRole('button', { name: option, exact: true }).click();
+  };
+
+  await expect(rows).toHaveCount(tracks.length);
+  await search.fill(first.name.slice(0, 3).toUpperCase());
+  await choose('исполнителю', first.author);
+  await choose('жанру', first.genre[0]);
+  await choose('году выпуска', 'По убыванию');
+  await expect(rows).toHaveCount(1);
+  await expect(rows.first()).toContainText(first.name);
+
+  await page.locator('a[href="/selection/2"]').click();
+  await expect(page.getByRole('heading', { name: 'Плейлист дня' })).toBeVisible();
+  await expect(search).toHaveValue('');
+  await expect(page.getByRole('button', { name: 'Сбросить фильтры' })).toBeDisabled();
+  await expect(rows).toHaveCount(5);
+
+  await page.getByRole('button', { name: 'Меню' }).click();
+  await page.getByRole('link', { name: 'Главное' }).click();
+  await expect(page.getByRole('heading', { name: 'Треки', exact: true })).toBeVisible();
+  await expect(search).toHaveValue('');
+  await expect(page.getByRole('button', { name: 'Сбросить фильтры' })).toBeDisabled();
+  await expect(rows).toHaveCount(tracks.length);
+});
