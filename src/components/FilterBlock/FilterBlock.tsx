@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { useAppDispatch } from "@/store/hooks";
 import { setPlaylist } from "@/store/playerSlice";
 import cn from "classnames";
@@ -28,6 +28,13 @@ export default function FilterBlock({
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
   const [year, setYear] = useState("");
+  useLayoutEffect(() => () => {
+    setActiveFilter(null);
+    setAuthor("");
+    setGenre("");
+    setYear("");
+  }, []);
+
   const selected = { author, genre, year };
   const hasFilters = Boolean(author || genre || year);
   const filters: { id: FilterName; label: string; options: string[] }[] = [

@@ -4,7 +4,7 @@ import SearchBar from "@/components/SearchBar/SearchBar";
 import styles from "./CenterBlock.module.css";
 import type { Track } from "@/types/types";
 
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 export default function CenterBlock({
   tracks,
@@ -13,7 +13,11 @@ export default function CenterBlock({
   tracks: Track[];
   title?: string;
 }) {
-  const [search, setSearch] = useState<string>("");
+  const [search, setSearch] = useState("");
+
+  // Next.js can hide and preserve the page when navigating away.
+  useLayoutEffect(() => () => setSearch(""), []);
+
   return (
     <div className={styles.centerblock}>
       <SearchBar search={search} setSearch={setSearch} />
