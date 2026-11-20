@@ -1,21 +1,10 @@
-import NavMenu from "@/components/NavMenu/NavMenu";
+import MusicLayout from "@/components/MusicLayout";
+import { getTracks, getSelections } from "@/lib/api";
 import CenterBlock from "@/components/CenterBlock/CenterBlock";
-import Sidebar from "@/components/Sidebar/Sidebar";
-import PlayerBar from "@/components/PlayerBar/PlayerBar";
-import styles from "./page.module.css";
 
-export default function Home() {
+export default async function Home() {
+  const [tracks, selections] = await Promise.all([getTracks(), getSelections()]);
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <main className={styles.main}>
-          <NavMenu />
-          <CenterBlock />
-          <Sidebar />
-        </main>
-        <PlayerBar />
-        <footer />
-      </div>
-    </div>
+    <MusicLayout selections={selections}><CenterBlock tracks={tracks} /></MusicLayout>
   );
 }

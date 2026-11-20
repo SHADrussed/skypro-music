@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Suspense } from "react";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   description: "Музыкальный сервис ",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ru" className={stratos.variable}>
       <body><Suspense fallback={null}><StoreProvider>{children}</StoreProvider></Suspense></body>
