@@ -5,5 +5,5 @@ export default async function SelectionPage({ params }: { params: Promise<{ id: 
   const { id } = await params;
   const [selection, tracks, selections] = await Promise.all([getSelection(id), getTracks(), getSelections()]);
   const ids = new Set(selection.items);
-  return <MusicLayout selections={selections}><CenterBlock title={selection.name ?? "Подборка"} tracks={tracks.filter(track => ids.has(track._id))} /></MusicLayout>;
+  return <MusicLayout selections={selections}><CenterBlock key={id} title={selection.name ?? "Подборка"} tracks={tracks.filter(track => ids.has(track._id))} /></MusicLayout>;
 }

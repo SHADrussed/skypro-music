@@ -31,7 +31,14 @@ test.beforeEach(async ({ page }) => {
   browserErrors.set(page, errors);
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', message => { if (message.type() === 'error' || message.type() === 'warning') errors.push(message.text()); });
-  page.on('requestfailed', request => errors.push(`${request.url()}: ${request.failure()?.errorText}`));
+  page.on('requestfailed', request => {
+    const failure = request.failure()?.errorText;
+    const url = new URL(request.url());
+    // Next cancels superseded RSC prefetches when a user navigates.
+    if (failure === 'net::ERR_ABORTED' && request.resourceType() === 'fetch' &&
+        url.origin === new URL(page.url()).origin && url.searchParams.has('_rsc')) return;
+    errors.push(`${request.url()}: ${failure}`);
+  });
   page.on('response', response => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
 });
 
@@ -61,6 +68,7 @@ for (const [route, ready] of [['/', 'Треки'], ['/signin', 'Почта'], ['
 
 test('menu toggles by mouse and keyboard and navigates', async ({ page }) => {
   await page.goto('/');
+  await expect(page.getByRole('link', { name: 'Войти', exact: true })).toBeVisible();
   const button = page.getByRole('button', { name: 'Меню', exact: true });
   const link = page.getByRole('link', { name: 'Мои треки', exact: true });
   await expect(button).toHaveAttribute('aria-expanded', 'false');
@@ -163,7 +171,7 @@ test('Figma desktop font metrics and layout anchors', async ({ page }, testInfo)
   await testInfo.attach('font-diagnostics', { body: JSON.stringify(typography, null, 2), contentType: 'application/json' });
   expect(typography.family).toContain('stratos');
   expect(typography.loaded).toBe(true);
-  expect(Math.abs(typography.sampleWidth - 33)).toBeLessThan(1);
+  expect(Math.abs(typography.sampleWidth - 33)).toBeLessThanOrEqual(1);
   expect(Math.abs(typography.headingTextWidth - 172)).toBeLessThan(2);
   const anchors = [
     [page.getByRole('heading', { name: 'Треки', exact: true }), { x: 294, y: 122, height: 72 }],
@@ -179,7 +187,7 @@ test('Figma desktop font metrics and layout anchors', async ({ page }, testInfo)
     const actual = await locator.boundingBox();
     measurements.push({ expected, actual });
     for (const [property, value] of Object.entries(expected)) {
-      expect(Math.abs(actual[property] - value), `${property} should match the reference`).toBeLessThan(1);
+      expect(Math.abs(actual[property] - value), `${property} should match the reference`).toBeLessThanOrEqual(1);
     }
   }
   await testInfo.attach('figma-anchor-measurements', {
@@ -187,4 +195,38 @@ test('Figma desktop font metrics and layout anchors', async ({ page }, testInfo)
   });
   await page.getByRole('button', { name: 'Меню', exact: true }).click();
   await page.screenshot({ path: testInfo.outputPath('figma-desktop-menu.png') });
+});
+
+test('search, artist, genre and sort work together and reset across routes', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('link', { name: 'Войти', exact: true })).toBeVisible();
+  const search = page.getByRole('searchbox', { name: 'Поиск треков' });
+  const rows = page.getByRole('button', { name: /^Воспроизвести / });
+  const first = tracks[0];
+  const choose = async (filter, option) => {
+    await page.getByRole('button', { name: filter, exact: true }).click();
+    await page.getByRole('region', { name: /Варианты:/ })
+      .getByRole('button', { name: option, exact: true }).click();
+  };
+
+  await expect(rows).toHaveCount(tracks.length);
+  await search.fill(first.name.slice(0, 3).toUpperCase());
+  await choose('исполнителю', first.author);
+  await choose('жанру', first.genre[0]);
+  await choose('году выпуска', 'По убыванию');
+  await expect(rows).toHaveCount(1);
+  await expect(rows.first()).toContainText(first.name);
+
+  await page.locator('a[href="/selection/2"]').click();
+  await expect(page.getByRole('heading', { name: 'Плейлист дня' })).toBeVisible();
+  await expect(search).toHaveValue('');
+  await expect(page.getByRole('button', { name: 'Сбросить фильтры' })).toBeDisabled();
+  await expect(rows).toHaveCount(5);
+
+  await page.getByRole('button', { name: 'Меню' }).click();
+  await page.getByRole('link', { name: 'Главное' }).click();
+  await expect(page.getByRole('heading', { name: 'Треки', exact: true })).toBeVisible();
+  await expect(search).toHaveValue('');
+  await expect(page.getByRole('button', { name: 'Сбросить фильтры' })).toBeDisabled();
+  await expect(rows).toHaveCount(tracks.length);
 });

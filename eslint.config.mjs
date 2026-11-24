@@ -13,6 +13,7 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     // Generated browser reports and the unmodified, independently shipped Bridge.
+    "coverage/**",
     "playwright-report/**",
     "test-results/**",
     "qa-results/**",

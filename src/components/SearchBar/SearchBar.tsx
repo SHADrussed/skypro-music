@@ -1,6 +1,13 @@
 import styles from "./SearchBar.module.css";
 
-export default function SearchBar() {
+export default function SearchBar({
+  search,
+  setSearch,
+}: {
+  search: string;
+
+  setSearch: (query: string) => void;
+}) {
   return (
     <div className={styles.centerblock__search}>
       <svg className={styles.search__svg}>
@@ -12,6 +19,8 @@ export default function SearchBar() {
         placeholder="Поиск"
         name="search"
         aria-label="Поиск треков"
+        value={search}
+        onChange={(event) => setSearch(event.target.value)}
       />
     </div>
   );
