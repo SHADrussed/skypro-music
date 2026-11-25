@@ -19,20 +19,20 @@ test('unliking removes the track and logout clears the session', async ({ page }
   await page.goto('/favourites');
   await expect(page.getByRole('heading', { name: 'Мои треки' })).toBeVisible();
   await page.getByRole('button', { name: 'Убрать Chase из избранного' }).first().click();
-  await expect(page.getByText('Треков пока нет.')).toBeVisible();
+  await expect(page.getByText('Нет подходящих треков')).toBeVisible();
   await page.getByRole('button', { name: 'Выйти' }).click();
   await expect(page).toHaveURL('/');
   expect(await page.evaluate(() => localStorage.getItem('skypro-session'))).toBeNull();
 });
 
-test('failed unlike rolls back the displayed favourite', async ({ page }) => {
+test('failed unlike keeps the track visible and shows the server error', async ({ page }) => {
   await signedIn(page);
   await page.route('**/catalog/track/favorite/all/', route => route.fulfill({ json: { data: [track] } }));
   await page.route('**/catalog/track/8/favorite/', route => route.fulfill({ status: 500, json: { message: 'Ошибка сервера' } }));
   await page.goto('/favourites');
   await page.getByRole('button', { name: 'Убрать Chase из избранного' }).first().click();
-  await expect(page.getByRole('button', { name: 'Убрать Chase из избранного' }).first()).toBeVisible();
-  await expect(page.getByRole('alert').first()).toBeVisible();
+  await expect(page.getByText('Ошибка сервера', { exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Убрать Chase из избранного' }).first()).toBeEnabled();
 });
 
 test('401 refreshes once and retries the protected request', async ({ page }) => {
@@ -70,7 +70,7 @@ test('network failure while refreshing clears the session', async ({ page }) => 
   expect(await page.evaluate(() => localStorage.getItem('skypro-session'))).toBeNull();
 });
 
-test('403 while liking rolls back the optimistic state', async ({ page }) => {
+test('403 while liking leaves the track unliked', async ({ page }) => {
   await signedIn(page);
   await page.route('**/catalog/track/favorite/all/', route => route.fulfill({ json: { data: [] } }));
   await page.route('**/catalog/track/8/favorite/', route => route.fulfill({ status: 403, json: { message: 'Недоступно' } }));

@@ -2,6 +2,7 @@
 import { useState, useSyncExternalStore } from "react";
 import type { Track } from "@/types/types";
 import { setFavorite } from "@/lib/api";
+import { readSession } from "@/lib/session";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { add, remove } from "@/store/favoritesSlice";
 
@@ -16,13 +17,18 @@ export default function FavoriteButton({ track, className }: { track: Track; cla
   async function toggle() {
     if (!session || pending || loading) return;
     const next = !liked;
-    setPending(true); setError("");
-    dispatch(next ? add(track) : remove(track._id));
-    try { await setFavorite(track._id, next); }
-    catch (cause) {
-      dispatch(next ? remove(track._id) : add(track));
+    setPending(true);
+    setError("");
+    try {
+      await setFavorite(track._id, next);
+      if (readSession()?.refresh === session.refresh) {
+        dispatch(next ? add(track) : remove(track._id));
+      }
+    } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Не удалось изменить избранное.");
-    } finally { setPending(false); }
+    } finally {
+      setPending(false);
+    }
   }
   return <span className={className}>
     <button type="button" aria-label={mounted && liked ? `Убрать ${track.name} из избранного` : `Добавить ${track.name} в избранное`}

@@ -25,7 +25,7 @@ export default function PlayerBar() {
 
   const startPlayback = useCallback((audio: HTMLAudioElement) => {
     const request = ++requestRef.current;
-    const source = audio.src;
+    const source = audio.getAttribute("src") ?? "";
     setError(null);
     // play() alone keeps rejecting after a media error until load() resets it.
     if (audio.error) audio.load();
@@ -114,7 +114,7 @@ export default function PlayerBar() {
           audio.pause();
           setPlaybackRequested(false);
           dispatch(setIsPlaying(false));
-          setError({ source: audio.src, message: "Не удалось загрузить аудио. Источник недоступен." });
+          setError({ source: audio.getAttribute("src") ?? "", message: "Не удалось загрузить аудио. Источник недоступен." });
         }}
       />
       {error && error.source === currentTrack?.track_file && <p role="alert" className={styles.player__error}>{error.message}</p>}
@@ -183,11 +183,6 @@ export default function PlayerBar() {
 
               <div className={styles.trackPlay__dislike}>
                 {currentTrack && <FavoriteButton track={currentTrack} />}
-                {/* <div className={cn(styles.trackPlay__dislike, styles.btnIcon)}>
-                  <svg className={styles.trackPlay__dislikeSvg}>
-                    <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
-                  </svg>
-                </div> */}
               </div>
             </div>
           </div>
