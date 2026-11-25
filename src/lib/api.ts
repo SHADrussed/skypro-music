@@ -50,9 +50,19 @@ export async function login(email: string, password: string) {
   return { user, ...tokens };
 }
 
+type ApiTrack = Track & { staredUser?: number[] };
+
+function normalizeTrack({ staredUser, ...track }: ApiTrack): Track {
+  return {
+    ...track,
+    logo: typeof track.logo === "string" ? track.logo : null,
+    stared_user: staredUser ?? [],
+  };
+}
+
 export async function getTracks(): Promise<Track[]> {
-  const result = await request<{ success: boolean; data: Array<Track & { staredUser?: number[] }> }>("/catalog/track/all/");
-  return result.data.map(({ staredUser, ...track }) => ({ ...track, logo: typeof track.logo === "string" ? track.logo : null, stared_user: staredUser ?? [] }));
+  const result = await request<{ success: boolean; data: ApiTrack[] }>("/catalog/track/all/");
+  return result.data.map(normalizeTrack);
 }
 
 export type Selection = { _id: number; name?: string; items: number[] };
@@ -110,8 +120,8 @@ export async function withReAuth<T>(path: string, init: RequestInit = {}): Promi
 }
 
 export async function getFavorites(): Promise<Track[]> {
-  const result = await withReAuth<{ data: Array<Track & { staredUser?: number[] }> }>("/catalog/track/favorite/all/");
-  return result.data.map(({ staredUser, ...track }) => ({ ...track, logo: typeof track.logo === "string" ? track.logo : null, stared_user: staredUser ?? [] }));
+  const result = await withReAuth<{ data: ApiTrack[] }>("/catalog/track/favorite/all/");
+  return result.data.map(normalizeTrack);
 }
 
 export async function setFavorite(id: number, liked: boolean) {

@@ -55,7 +55,11 @@ for (const [route, ready] of [['/', 'Треки'], ['/signin', 'Почта'], ['
     if (route === '/') await expect(page.getByRole('heading', { name: ready, exact: true })).toBeVisible();
     else await expect(page.getByRole('textbox', { name: 'Почта', exact: true })).toBeVisible();
     await page.evaluate(() => document.fonts.ready);
-    await expect.poll(() => page.locator('img').evaluateAll(images => images.every(img => img.complete && img.naturalWidth > 0))).toBe(true);
+    for (const image of await page.locator('img').all()) {
+      await image.scrollIntoViewIfNeeded();
+      await expect.poll(() => image.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    }
+    await page.evaluate(() => window.scrollTo(0, 0));
     const overflow = await page.evaluate(() => [...document.querySelectorAll('body *')].filter(element => {
       const rect = element.getBoundingClientRect();
       return rect.width > 0 && (rect.left < -1 || rect.right > innerWidth + 1);
