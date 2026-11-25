@@ -99,8 +99,11 @@ test('loop has priority over shuffle, and disabling loop allows ended navigation
   await choose(page, 0); await playing(page);
   expect(await audio(page).evaluate(el => el.loop)).toBe(true);
   const source = await currentSource(page);
-  const initial = await audio(page).evaluate(el => el.currentTime);
-  await expect.poll(() => audio(page).evaluate(el => el.currentTime), { timeout: 5000 }).toBeLessThan(initial);
+  const halfway = await audio(page).evaluate(el => {
+    el.currentTime = el.duration * 0.75;
+    return el.duration / 2;
+  });
+  await expect.poll(() => audio(page).evaluate(el => el.currentTime), { timeout: 5000 }).toBeLessThan(halfway);
   expect(await currentSource(page)).toBe(source);
   await playing(page);
   await loop(page).click();
